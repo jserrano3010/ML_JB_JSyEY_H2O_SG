@@ -1,0 +1,229 @@
+/* Custom presentation: Primer entregable — Yunis & Serrano */
+:root {
+  --report-teal: #1f6f72;
+  --report-teal-dark: #164f52;
+  --report-teal-soft: #e8f1f0;
+  --report-gold: #d79a25;
+  --report-gold-soft: #fff5df;
+  --report-ink: #183331;
+  --report-muted: #5d706d;
+  --report-line: #d7e2df;
+}
+
+/* Overall reading surface */
+body {
+  background: #f7f9f8 !important;
+  color: var(--report-ink) !important;
+}
+.bd-main .bd-content .bd-article-container {
+  max-width: 980px !important;
+}
+.bd-article {
+  background: #fff;
+  border: 1px solid #e2ebe8;
+  border-radius: 14px;
+  box-shadow: 0 5px 22px rgba(24, 51, 49, .06);
+  padding: 2.2rem 2.5rem 3rem !important;
+  margin-bottom: 2rem;
+}
+
+/* Headings close to the PDF */
+.bd-article h1 {
+  color: var(--report-teal-dark) !important;
+  font-weight: 800 !important;
+  letter-spacing: -.025em;
+  border-bottom: 3px solid var(--report-teal);
+  padding-bottom: .55rem;
+  margin-bottom: 1.2rem;
+}
+.bd-article h2 {
+  color: var(--report-teal) !important;
+  font-weight: 750 !important;
+  margin-top: 2.1rem;
+}
+.bd-article h3 {
+  color: var(--report-teal-dark) !important;
+  font-weight: 700 !important;
+}
+.bd-article p, .bd-article li {
+  line-height: 1.68;
+}
+
+/* Navigation/sidebar */
+.bd-sidebar-primary .sidebar-primary-items {
+  padding-top: 1rem;
+}
+.bd-sidebar-primary {
+  background: #f1f6f4 !important;
+}
+.bd-sidebar-primary .nav-link {
+  border-radius: 7px;
+  margin: 2px 6px;
+}
+.bd-sidebar-primary .nav-link:hover,
+.bd-sidebar-primary .nav-link.active {
+  background: var(--report-teal-soft) !important;
+  color: var(--report-teal-dark) !important;
+}
+
+/* Hide notebook source code: preserve outputs, tables and figures */
+.cell_input,
+.cell_input.docutils,
+.cell_input .highlight,
+.cell_input pre {
+  display: none !important;
+}
+.cell {
+  border: 0 !important;
+  margin: 1.15rem 0 !important;
+  padding: 0 !important;
+}
+.cell_output {
+  background: #fff !important;
+  border-left: 4px solid var(--report-teal) !important;
+  padding: .7rem 1rem !important;
+  margin-top: .25rem !important;
+  border-radius: 0 8px 8px 0;
+}
+.cell_output .output_area,
+.cell_output .output_html,
+.cell_output .output_stream {
+  max-width: 100%;
+}
+
+/* Dataframe and report tables */
+.bd-article table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1rem 0 1.4rem !important;
+  font-size: .92rem;
+  background: #fff;
+}
+.bd-article table thead th {
+  background: var(--report-teal) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border: 1px solid var(--report-teal) !important;
+  padding: .58rem .7rem !important;
+}
+.bd-article table tbody td,
+.bd-article table tbody th {
+  border: 1px solid var(--report-line) !important;
+  padding: .5rem .65rem !important;
+  vertical-align: top;
+}
+.bd-article table tbody tr:nth-child(even) td,
+.bd-article table tbody tr:nth-child(even) th {
+  background: #f5f8f7 !important;
+}
+.bd-article table.dataframe tbody tr:hover td {
+  background: var(--report-gold-soft) !important;
+}
+
+/* Figures / plots */
+.bd-article img {
+  max-width: 100%;
+  height: auto;
+}
+.bd-article figure {
+  margin: 1.5rem auto !important;
+  text-align: center;
+}
+.bd-article figure img {
+  border-radius: 6px;
+}
+.bd-article figcaption {
+  color: var(--report-muted) !important;
+  font-size: .88rem !important;
+  margin-top: .5rem !important;
+}
+
+/* Callout blocks */
+.admonition,
+.sd-card {
+  border-radius: 8px !important;
+}
+.admonition.note {
+  border-left-color: var(--report-teal) !important;
+}
+.admonition.warning {
+  border-left-color: var(--report-gold) !important;
+}
+
+/* Intro/cover */
+.report-cover-illustration {
+  display: block;
+  width: 100%;
+  max-height: 390px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: .2rem 0 1.6rem;
+  box-shadow: 0 5px 18px rgba(24,51,49,.10);
+}
+.report-cover-subtitle {
+  color: #4d6864;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin: 0 0 1.3rem;
+}
+.report-meta {
+  border-top: 1px solid var(--report-line);
+  border-bottom: 1px solid var(--report-line);
+  margin: 1rem 0 1.4rem;
+}
+.report-meta-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--report-line);
+}
+.report-meta-row:last-child { border-bottom: 0; }
+.report-meta-label { color: #54706c; font-weight: 600; }
+.report-meta-value { color: var(--report-ink); }
+.report-scope {
+  background: var(--report-gold-soft);
+  border-left: 5px solid var(--report-gold);
+  border-radius: 0 7px 7px 0;
+  padding: 1rem 1.15rem;
+  margin: 1.5rem 0 2rem;
+}
+
+/* ToC on the intro as clean cards/links */
+.bd-article .toctree-wrapper {
+  margin: .7rem 0 1.1rem;
+}
+.bd-article .toctree-wrapper .caption-text {
+  color: var(--report-teal-dark);
+  font-weight: 750;
+}
+.bd-article .toctree-l1 > a {
+  display: block;
+  background: #f5f8f7;
+  border: 1px solid var(--report-line);
+  border-radius: 7px;
+  padding: .5rem .75rem;
+  margin: .3rem 0;
+  text-decoration: none;
+}
+.bd-article .toctree-l1 > a:hover {
+  background: var(--report-teal-soft);
+  border-color: #b8d0cc;
+}
+
+/* Make the top chrome quieter */
+#pst-header {
+  border-bottom: 1px solid #dfe8e5 !important;
+}
+
+@media (max-width: 768px) {
+  .bd-article { padding: 1.2rem 1rem 2rem !important; }
+  .report-meta-row { grid-template-columns: 1fr; gap: .15rem; }
+  .bd-article table { font-size: .82rem; }
+}
+
+@media print {
+  .cell_input { display: none !important; }
+  .bd-article { box-shadow: none; border: 0; }
+}

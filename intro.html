@@ -77,7 +77,8 @@
     <script src="_static/language_data.js"></script>
     <script src="searchindex.js"></script>
   
-  <style>div.cell_input,.jp-Cell-inputWrapper{display:none!important;}</style></head>
+      <link rel="stylesheet" href="_static/custom-report.css">
+  </head>
   <body data-default-mode="">
   
   
@@ -236,10 +237,6 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="capitulos/03_planificador.html">Planificador de siembra y agua</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/04_optimizacion.html">4. Decisión de siembra y reserva de agua</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preparado para el segundo entregable</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="notebooks/00_construccion_dataset.html">Construcción reproducible del dataset regional</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cierre</span></p>
 <ul class="nav bd-sidenav">
@@ -409,10 +406,17 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pronostico-de-agua-y-planificacion-de-siembras-bajo-sequia-en-sabanagrande-atlantico">
+<p><img class="report-cover-illustration" src="_images/portada_ilustracion.png" alt="Ilustración del sistema de agua y cultivos de Sabanagrande" /></p>
 <h1>Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico<a class="headerlink" href="#pronostico-de-agua-y-planificacion-de-siembras-bajo-sequia-en-sabanagrande-atlantico" title="Link to this heading">#</a></h1>
-<p><strong>Edwin Yunis y Jairo Serrano</strong> — Maestría en Ingeniería Industrial
-Curso de Machine Learning — Profesor: Dr. Lihki Rubio
-Primer entregable: base de datos, análisis exploratorio y modelo base</p>
+<p class="report-cover-subtitle">Primer entregable del proyecto de investigación: selección de la base de datos, análisis exploratorio e implementación del modelo base comparado contra una línea base trivial.</p>
+<div class="report-meta">
+<div class="report-meta-row"><div class="report-meta-label">Autores</div><div class="report-meta-value">Edwin Yunis y Jairo Serrano</div></div>
+<div class="report-meta-row"><div class="report-meta-label">Programa</div><div class="report-meta-value">Maestría en Ingeniería Industrial</div></div>
+<div class="report-meta-row"><div class="report-meta-label">Curso</div><div class="report-meta-value">Machine Learning</div></div>
+<div class="report-meta-row"><div class="report-meta-label">Profesor</div><div class="report-meta-value">Dr. Lihki Rubio</div></div>
+<div class="report-meta-row"><div class="report-meta-label">Fecha</div><div class="report-meta-value">30 de septiembre de 2026</div></div>
+</div>
+<div class="report-scope"><strong>Alcance de este entregable.</strong> Los resultados se obtuvieron con la serie real de NASA POWER de la celda de Sabanagrande (1981–2025, 16.436 días). El diseño regional con una grilla de unos 40 sitios, descrito en la metodología, queda implementado en código y se ejecutará en el segundo entregable.</div>
 <section id="resumen">
 <h2>Resumen<a class="headerlink" href="#resumen" title="Link to this heading">#</a></h2>
 <p>En el Atlántico la lluvia se concentra en dos temporadas y el resto del año la atmósfera demanda más agua de la que cae. Antes de sembrar, el agricultor necesita saber cuántas hectáreas puede sostener con el agua que tiene y cuánta debe reservar para todo el ciclo del cultivo, de cuatro a seis meses.</p>
@@ -468,12 +472,6 @@ Primer entregable: base de datos, análisis exploratorio y modelo base</p>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preparado para el segundo entregable</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="notebooks/00_construccion_dataset.html">Construcción reproducible del dataset regional</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cierre</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="capitulos/limitaciones.html">Limitaciones y consideraciones éticas</a></li>
@@ -485,8 +483,8 @@ Primer entregable: base de datos, análisis exploratorio y modelo base</p>
 <h2>Reproducibilidad<a class="headerlink" href="#reproducibilidad" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Dependencias en <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>; semilla global <code class="docutils literal notranslate"><span class="pre">SEED</span> <span class="pre">=</span> <span class="pre">42</span></code> en <code class="docutils literal notranslate"><span class="pre">src/config.py</span></code>, donde están todos los parámetros.</p></li>
-<li><p>El notebook 00 descarga los datos desde las fuentes oficiales y guarda las respuestas en <code class="docutils literal notranslate"><span class="pre">data/raw/power/</span></code>; las ejecuciones siguientes usan esa caché.</p></li>
-<li><p>Los notebooks se ejecutan en orden (00 → 04). El planificador interactivo está en <code class="docutils literal notranslate"><span class="pre">apps/planificador_siembra.py</span></code>.</p></li>
+<li><p>Para este primer entregable se usa la serie real de Sabanagrande preparada por <code class="docutils literal notranslate"><span class="pre">00b_dataset_un_sitio.ipynb</span></code>; el notebook <code class="docutils literal notranslate"><span class="pre">00_construccion_dataset.ipynb</span></code> queda reservado para el segundo entregable y no forma parte del índice de este libro.</p></li>
+<li><p>Para reproducir este entregable, los notebooks relevantes son <code class="docutils literal notranslate"><span class="pre">00b</span></code>, <code class="docutils literal notranslate"><span class="pre">01</span></code>, <code class="docutils literal notranslate"><span class="pre">02</span></code> y <code class="docutils literal notranslate"><span class="pre">03</span></code>; el notebook <code class="docutils literal notranslate"><span class="pre">04</span></code> contiene la herramienta de decisión como componente complementario. El planificador interactivo está en <code class="docutils literal notranslate"><span class="pre">apps/planificador_siembra.py</span></code>.</p></li>
 </ul>
 </section>
 </section>

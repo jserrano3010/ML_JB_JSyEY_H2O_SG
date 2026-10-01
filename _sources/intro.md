@@ -35,5 +35,5 @@ Este entregable usa la serie real de NASA POWER de la celda de Sabanagrande (198
 ## Reproducibilidad
 
 - Dependencias en `requirements.txt`; semilla global `SEED = 42` en `src/config.py`, donde están todos los parámetros.
-- El notebook 00 descarga los datos desde las fuentes oficiales y guarda las respuestas en `data/raw/power/`; las ejecuciones siguientes usan esa caché.
-- Los notebooks se ejecutan en orden (00 → 04). El planificador interactivo está en `apps/planificador_siembra.py`.
+- Para este primer entregable se usa la serie real de Sabanagrande preparada por `00b_dataset_un_sitio.ipynb`; el notebook `00_construccion_dataset.ipynb` queda reservado para el segundo entregable y no forma parte del índice de este libro.
+- Para reproducir este entregable, los notebooks relevantes son `00b`, `01`, `02` y `03`; el notebook `04` contiene la herramienta de decisión como componente complementario. El planificador interactivo está en `apps/planificador_siembra.py`.
