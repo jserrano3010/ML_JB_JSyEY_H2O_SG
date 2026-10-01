@@ -1,0 +1,27 @@
+# Referencias
+
+- Allen, R. G., Pereira, L. S., Raes, D. y Smith, M. (1998). *Crop evapotranspiration: Guidelines for computing crop water requirements*. FAO Irrigation and Drainage Paper 56. FAO, Roma.
+- Angelopoulos, A. N. y Bates, S. (2023). Conformal prediction: A gentle introduction. *Foundations and Trends in Machine Learning*, 16(4), 494–591.
+- Bai, J., Chen, X., Dobermann, A., Yang, H., Cassman, K. G. y Zhang, F. (2010). Evaluation of NASA satellite- and model-derived weather data for simulation of maize yield potential in China. *Agronomy Journal*, 102, 9–16. https://doi.org/10.2134/agronj2009.0085
+- Breiman, L. (2001). Random forests. *Machine Learning*, 45, 5–32.
+- Day, G. N. (1985). Extended streamflow forecasting using NWSRFS. *Journal of Water Resources Planning and Management*, 111(2), 157–170. https://doi.org/10.1061/(ASCE)0733-9496(1985)111:2(157)
+- Epstein, E. S. (1969). A scoring system for probability forecasts of ranked categories. *Journal of Applied Meteorology*, 8(6), 985–987.
+- Friedman, J. H. (2001). Greedy function approximation: A gradient boosting machine. *Annals of Statistics*, 29(5), 1189–1232.
+- Funk, C., Peterson, P., Landsfeld, M., et al. (2015). The climate hazards infrared precipitation with stations—a new environmental record for monitoring extremes. *Scientific Data*, 2, 150066.
+- Gibson, P. B., Chapman, W. E., Altinok, A., Delle Monache, L., DeFlorio, M. J. y Waliser, D. E. (2021). Training machine learning models on climate model output yields skillful interpretable seasonal precipitation forecasts. *Communications Earth & Environment*, 2, 159. https://doi.org/10.1038/s43247-021-00225-4
+- Hamlet, A. F. y Lettenmaier, D. P. (1999). Columbia River streamflow forecasting based on ENSO and PDO climate signals. *Journal of Water Resources Planning and Management*, 125(6), 333–341.
+- Hersbach, H., Bell, B., Berrisford, P., et al. (2020). The ERA5 global reanalysis. *Quarterly Journal of the Royal Meteorological Society*, 146, 1999–2049.
+- Ke, G., Meng, Q., Finley, T., et al. (2017). LightGBM: A highly efficient gradient boosting decision tree. *Advances in Neural Information Processing Systems*, 30.
+- Koenker, R. y Bassett, G. (1978). Regression quantiles. *Econometrica*, 46(1), 33–50.
+- Lundberg, S. M. y Lee, S.-I. (2017). A unified approach to interpreting model predictions. *Advances in Neural Information Processing Systems*, 30.
+- Magaña, V., Amador, J. A. y Medina, S. (1999). The midsummer drought over Mexico and Central America. *Journal of Climate*, 12, 1577–1588.
+- NASA Langley Research Center. *POWER Project: Prediction Of Worldwide Energy Resources*. https://power.larc.nasa.gov/
+- NOAA Climate Prediction Center. *Oceanic Niño Index (ONI)*. https://www.cpc.ncep.noaa.gov/
+- Poveda, G., Jaramillo, A., Gil, M. M., Quiceno, N. y Mantilla, R. I. (2001). Seasonality in ENSO-related precipitation, river discharges, soil moisture, and vegetation index in Colombia. *Water Resources Research*, 37(8), 2169–2178. https://doi.org/10.1029/2000WR900395
+- Roberts, D. R., Bahn, V., Ciuti, S., et al. (2017). Cross-validation strategies for data with temporal, spatial, hierarchical, or phylogenetic structure. *Ecography*, 40, 913–929.
+- Steduto, P., Hsiao, T. C., Fereres, E. y Raes, D. (2012). *Crop yield response to water*. FAO Irrigation and Drainage Paper 66. FAO, Roma.
+- Stern, R. D. y Coe, R. (1984). A model fitting analysis of daily rainfall data. *Journal of the Royal Statistical Society, Series A*, 147(1), 1–34.
+- Thomas, H. A. y Burden, R. P. (1963). *Operations research in water quality management*. Harvard Water Resources Group, Cambridge, MA.
+- Wang, C. (2007). Variability of the Caribbean low-level jet and its relations to climate. *Climate Dynamics*, 29(4), 411–422. https://doi.org/10.1007/s00382-007-0243-z
+- Werner, K., Brandon, D., Clark, M. y Gangopadhyay, S. (2004). Climate index weighting schemes for NWS ESP-based seasonal volume forecasts. *Journal of Hydrometeorology*, 5(6), 1076–1090. https://doi.org/10.1175/JHM-381.1
+- Zhao, N., Charland, K., Carabali, M., et al. (2020). Machine learning and dengue forecasting: Comparing random forests and artificial neural networks for predicting dengue burden at national and sub-national scales in Colombia. *PLOS Neglected Tropical Diseases*, 14(9), e0008056.

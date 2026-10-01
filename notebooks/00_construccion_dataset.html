@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Construcción reproducible del dataset regional &#8212; Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/00_construccion_dataset';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Limitaciones y consideraciones éticas" href="../capitulos/limitaciones.html" />
+    <link rel="prev" title="4. Decisión de siembra y reserva de agua" href="04_optimizacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Planteamiento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/01_problema.html">Planteamiento del problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/02_marco_referencia.html">Marco de referencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Base de datos y análisis exploratorio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00b_dataset_un_sitio.html">Dataset de un sitio (plan B)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_base_de_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Herramienta de decisión</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/03_planificador.html">Planificador de siembra y agua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_optimizacion.html">4. Decisión de siembra y reserva de agua</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preparado para el segundo entregable</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Construcción reproducible del dataset regional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cierre</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/limitaciones.html">Limitaciones y consideraciones éticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/00_construccion_dataset.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Construcción reproducible del dataset regional</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-periodo-y-variables">1. Fuentes, periodo y variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#area-de-estudio-y-grilla-regional">2. Área de estudio y grilla regional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conexion-con-reintentos-y-descarga-con-cache">3. Conexión con reintentos y descarga con caché</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-la-grilla-regional-y-de-la-finca">4. Descarga de la grilla regional y de la finca</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oceanic-nino-index-oni">5. Oceanic Niño Index (ONI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evapotranspiracion-de-referencia-fao-56">6. Evapotranspiración de referencia (FAO-56)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-control-de-calidad-y-guardado">7. Dataset final, control de calidad y guardado</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="construccion-reproducible-del-dataset-regional">
+<h1>Construcción reproducible del dataset regional<a class="headerlink" href="#construccion-reproducible-del-dataset-regional" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p><strong>Segundo entregable.</strong> Este notebook construye el dataset regional (unos 40 sitios). En este primer entregable se usó la serie de un sitio (notebook 00b); por eso este notebook se muestra sin ejecutar.</p>
+</div></blockquote>
+<p>Este notebook construye la base de datos directamente desde las fuentes oficiales, sin archivos locales de partida:</p>
+<ul class="simple">
+<li><p><strong>NASA POWER</strong> (NASA Langley Research Center): variables agroclimáticas diarias, 1981–2025, para una grilla regional del Caribe colombiano y para el punto de la finca en Sabanagrande.</p></li>
+<li><p><strong>NOAA Climate Prediction Center</strong>: Oceanic Niño Index (ONI).</p></li>
+</ul>
+<p>Decisiones de diseño:</p>
+<ol class="arabic simple">
+<li><p><strong>Grilla regional</strong> en los centros de celda de POWER (0,5° × 0,625°), de modo que cada punto sea una celda distinta y no haya casi-duplicados.</p></li>
+<li><p><strong>Solo puntos sobre tierra</strong> (máscara global de tierra) y con elevación ≤ 400 m, para excluir la Sierra Nevada y la Serranía de Perijá.</p></li>
+<li><p><strong>La celda regional más cercana a la finca se excluye</strong>: la finca es el sitio de prueba y ningún vecino inmediato debe quedar en entrenamiento.</p></li>
+<li><p><strong>ONI rezagado</strong> para usar solo el valor ya publicado en cada fecha.</p></li>
+<li><p>Las respuestas de la API se guardan en <code class="docutils literal notranslate"><span class="pre">data/raw/power/</span></code> y el dataset final en <code class="docutils literal notranslate"><span class="pre">data/processed/</span></code>, para que el libro no tenga que volver a descargar.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Requiere: pip install global-land-mask</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlencode</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests.adapters</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPAdapter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib3.util.retry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Retry</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">global_land_mask</span><span class="w"> </span><span class="kn">import</span> <span class="n">globe</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.hidrologia</span><span class="w"> </span><span class="kn">import</span> <span class="n">et0_penman_monteith</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fuentes-periodo-y-variables">
+<h2>1. Fuentes, periodo y variables<a class="headerlink" href="#fuentes-periodo-y-variables" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">NASA_POWER_BASE_URL</span> <span class="o">=</span> <span class="s2">"https://power.larc.nasa.gov/api/temporal/daily/point"</span>
+<span class="n">NOAA_ONI_URL</span> <span class="o">=</span> <span class="s2">"https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt"</span>
+
+<span class="n">FECHA_INICIO</span><span class="p">,</span> <span class="n">FECHA_FIN</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FECHA_INICIO</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">FECHA_FIN</span>      <span class="c1"># 1981-01-01 a 2025-12-31</span>
+<span class="n">PARAMETROS_POWER</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">POWER_PARAMS</span>
+<span class="c1"># El ONI de cada trimestre se publica días después de terminar el trimestre.</span>
+<span class="c1"># Asignado al día 1 del mes central, 75 días de rezago garantizan que ya estaba publicado.</span>
+<span class="n">REZAGO_ONI_DIAS</span> <span class="o">=</span> <span class="mi">75</span>
+
+<span class="n">CRUDO</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">DATA_RAW</span> <span class="o">/</span> <span class="s2">"power"</span>
+<span class="n">CRUDO</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="area-de-estudio-y-grilla-regional">
+<h2>2. Área de estudio y grilla regional<a class="headerlink" href="#area-de-estudio-y-grilla-regional" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LATITUDES</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">LAT_MIN</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LAT_MAX</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># -76.875 es el primer centro de celda dentro del límite occidental -76.9°</span>
+<span class="n">LONGITUDES</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">76.875</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_MAX</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">)</span>
+
+<span class="n">puntos_regionales</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">float</span><span class="p">(</span><span class="n">la</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lo</span><span class="p">))</span> <span class="k">for</span> <span class="n">la</span> <span class="ow">in</span> <span class="n">LATITUDES</span> <span class="k">for</span> <span class="n">lo</span> <span class="ow">in</span> <span class="n">LONGITUDES</span>
+                     <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_MIN</span> <span class="o">&lt;=</span> <span class="n">lo</span> <span class="o">&lt;=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_MAX</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">globe</span><span class="o">.</span><span class="n">is_land</span><span class="p">(</span><span class="n">la</span><span class="p">,</span> <span class="n">lo</span><span class="p">))]</span>
+
+<span class="c1"># Exclusión de la celda más cercana a la finca (sitio de prueba)</span>
+<span class="n">cercano</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">puntos_regionales</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LAT_FINCA</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_FINCA</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">puntos_regionales</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">puntos_regionales</span> <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">cercano</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Celdas de la grilla: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">LATITUDES</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">LONGITUDES</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Celda excluida por cercanía a la finca: </span><span class="si">{</span><span class="n">cercano</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Puntos terrestres candidatos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">puntos_regionales</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conexion-con-reintentos-y-descarga-con-cache">
+<h2>3. Conexión con reintentos y descarga con caché<a class="headerlink" href="#conexion-con-reintentos-y-descarga-con-cache" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">retry</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="p">[</span><span class="mi">429</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">],</span>
+              <span class="n">allowed_methods</span><span class="o">=</span><span class="p">[</span><span class="s2">"GET"</span><span class="p">],</span> <span class="n">respect_retry_after_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">"https://"</span><span class="p">,</span> <span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="n">retry</span><span class="p">))</span>
+<span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"User-Agent"</span><span class="p">:</span> <span class="s2">"JupyterBook-ML-Sabanagrande/1.0"</span><span class="p">})</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">construir_url_power</span><span class="p">(</span><span class="n">latitud</span><span class="p">,</span> <span class="n">longitud</span><span class="p">):</span>
+    <span class="n">consulta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"parameters"</span><span class="p">:</span> <span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PARAMETROS_POWER</span><span class="p">),</span> <span class="s2">"community"</span><span class="p">:</span> <span class="s2">"AG"</span><span class="p">,</span>
+                <span class="s2">"longitude"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">longitud</span><span class="p">),</span> <span class="s2">"latitude"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">latitud</span><span class="p">),</span>
+                <span class="s2">"start"</span><span class="p">:</span> <span class="n">FECHA_INICIO</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="n">FECHA_FIN</span><span class="p">,</span> <span class="s2">"format"</span><span class="p">:</span> <span class="s2">"JSON"</span><span class="p">,</span> <span class="s2">"time-standard"</span><span class="p">:</span> <span class="s2">"LST"</span><span class="p">}</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">NASA_POWER_BASE_URL</span><span class="si">}</span><span class="s2">?</span><span class="si">{</span><span class="n">urlencode</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">descargar_punto_power</span><span class="p">(</span><span class="n">latitud</span><span class="p">,</span> <span class="n">longitud</span><span class="p">,</span> <span class="n">nombre_punto</span><span class="p">,</span> <span class="n">tipo_punto</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Descarga (o lee de la caché) un punto y lo devuelve como DataFrame diario."""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">construir_url_power</span><span class="p">(</span><span class="n">latitud</span><span class="p">,</span> <span class="n">longitud</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">CRUDO</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nombre_punto</span><span class="si">}</span><span class="s2">.json"</span>
+    <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">contenido</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">cache</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">180</span><span class="p">)</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">contenido</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">contenido</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s2">"properties"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">contenido</span> <span class="ow">or</span> <span class="s2">"parameter"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">contenido</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"NASA POWER no devolvió la estructura esperada para </span><span class="si">{</span><span class="n">nombre_punto</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">contenido</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="s2">"parameter"</span><span class="p">])</span>
+    <span class="n">datos</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"fecha"</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">datos</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"%Y%m</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">PARAMETROS_POWER</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">datos</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">datos</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>      <span class="c1"># -999 = faltante</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">contenido</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"coordinates"</span><span class="p">,</span> <span class="p">[</span><span class="n">longitud</span><span class="p">,</span> <span class="n">latitud</span><span class="p">])</span>
+    <span class="n">lon_r</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">longitud</span><span class="p">)</span>
+    <span class="n">lat_r</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">latitud</span><span class="p">)</span>
+    <span class="n">elev</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">elev</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elev</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">900</span><span class="p">:</span>
+        <span class="n">elev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([(</span><span class="s2">"punto"</span><span class="p">,</span> <span class="n">nombre_punto</span><span class="p">),</span> <span class="p">(</span><span class="s2">"tipo_punto"</span><span class="p">,</span> <span class="n">tipo_punto</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="s2">"lat"</span><span class="p">,</span> <span class="n">lat_r</span><span class="p">),</span> <span class="p">(</span><span class="s2">"lon"</span><span class="p">,</span> <span class="n">lon_r</span><span class="p">),</span> <span class="p">(</span><span class="s2">"elevacion_m"</span><span class="p">,</span> <span class="n">elev</span><span class="p">)],</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">datos</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datos</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">elev</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Link directo NASA POWER para la finca:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">construir_url_power</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">LAT_FINCA</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_FINCA</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="descarga-de-la-grilla-regional-y-de-la-finca">
+<h2>4. Descarga de la grilla regional y de la finca<a class="headerlink" href="#descarga-de-la-grilla-regional-y-de-la-finca" title="Link to this heading">#</a></h2>
+<p>La primera ejecución tarda varios minutos; las siguientes leen la caché.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tablas</span><span class="p">,</span> <span class="n">fuentes</span><span class="p">,</span> <span class="n">descartados</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">puntos_regionales</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">nombre</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"REGIONAL_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">tabla</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">elev</span> <span class="o">=</span> <span class="n">descargar_punto_power</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="s2">"regional"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">elev</span><span class="p">)</span> <span class="ow">and</span> <span class="n">elev</span> <span class="o">&gt;</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ELEVACION_MAX_M</span><span class="p">:</span>
+        <span class="n">descartados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"punto"</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="s2">"lat"</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">:</span> <span class="n">lon</span><span class="p">,</span> <span class="s2">"motivo"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"elevación </span><span class="si">{</span><span class="n">elev</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">})</span>
+        <span class="k">continue</span>
+    <span class="n">tablas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+    <span class="n">fuentes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"punto"</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="s2">"regional"</span><span class="p">,</span> <span class="s2">"lat_solicitada"</span><span class="p">:</span> <span class="n">lat</span><span class="p">,</span> <span class="s2">"lon_solicitada"</span><span class="p">:</span> <span class="n">lon</span><span class="p">,</span>
+                    <span class="s2">"elevacion_m"</span><span class="p">:</span> <span class="n">elev</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">:</span> <span class="n">url</span><span class="p">})</span>
+
+<span class="n">tabla_finca</span><span class="p">,</span> <span class="n">url_finca</span><span class="p">,</span> <span class="n">elev_finca</span> <span class="o">=</span> <span class="n">descargar_punto_power</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">LAT_FINCA</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_FINCA</span><span class="p">,</span>
+                                                            <span class="n">cfg</span><span class="o">.</span><span class="n">PUNTO_OBJETIVO</span><span class="p">,</span> <span class="s2">"finca_prueba"</span><span class="p">)</span>
+<span class="n">tablas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tabla_finca</span><span class="p">)</span>
+<span class="n">fuentes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"punto"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PUNTO_OBJETIVO</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">:</span> <span class="s2">"finca_prueba"</span><span class="p">,</span> <span class="s2">"lat_solicitada"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LAT_FINCA</span><span class="p">,</span>
+                <span class="s2">"lon_solicitada"</span><span class="p">:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LON_FINCA</span><span class="p">,</span> <span class="s2">"elevacion_m"</span><span class="p">:</span> <span class="n">elev_finca</span><span class="p">,</span> <span class="s2">"url"</span><span class="p">:</span> <span class="n">url_finca</span><span class="p">})</span>
+
+<span class="n">power</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">tablas</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span>
+         <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">fuentes_power</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fuentes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sitios retenidos:"</span><span class="p">,</span> <span class="n">power</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s2">"| observaciones:"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">power</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">descartados</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="oceanic-nino-index-oni">
+<h2>5. Oceanic Niño Index (ONI)<a class="headerlink" href="#oceanic-nino-index-oni" title="Link to this heading">#</a></h2>
+<p>El ONI es una media móvil de tres meses; cada trimestre se asigna a su mes central y se lleva a escala diaria. Luego se rezaga para que en cada fecha solo esté el valor ya publicado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">NOAA_ONI_URL</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="n">oni</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s2">"\s+"</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">"python"</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"SEAS"</span><span class="p">:</span> <span class="s2">"temporada_oni"</span><span class="p">,</span> <span class="s2">"YR"</span><span class="p">:</span> <span class="s2">"anio"</span><span class="p">,</span> <span class="s2">"TOTAL"</span><span class="p">:</span> <span class="s2">"sst_nino34"</span><span class="p">,</span> <span class="s2">"ANOM"</span><span class="p">:</span> <span class="s2">"ONI_original"</span><span class="p">})</span>
+<span class="n">mes_central</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"DJF"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"JFM"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"FMA"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"MAM"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"AMJ"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"MJJ"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+               <span class="s2">"JJA"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">"JAS"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">"ASO"</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">"SON"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"OND"</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s2">"NDJ"</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<span class="n">oni</span><span class="p">[</span><span class="s2">"mes"</span><span class="p">]</span> <span class="o">=</span> <span class="n">oni</span><span class="p">[</span><span class="s2">"temporada_oni"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mes_central</span><span class="p">)</span>
+<span class="n">oni</span> <span class="o">=</span> <span class="n">oni</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">"mes"</span><span class="p">,</span> <span class="s2">"anio"</span><span class="p">,</span> <span class="s2">"ONI_original"</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">"mes"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"anio"</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
+<span class="n">oni</span><span class="p">[</span><span class="s2">"fecha_mes"</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">({</span><span class="s2">"year"</span><span class="p">:</span> <span class="n">oni</span><span class="p">[</span><span class="s2">"anio"</span><span class="p">],</span> <span class="s2">"month"</span><span class="p">:</span> <span class="n">oni</span><span class="p">[</span><span class="s2">"mes"</span><span class="p">],</span> <span class="s2">"day"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="n">calendario</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">oni</span><span class="p">[</span><span class="s2">"fecha_mes"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2025-12-31"</span><span class="p">),</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+<span class="n">oni_diario</span> <span class="o">=</span> <span class="p">(</span><span class="n">oni</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"fecha_mes"</span><span class="p">)[</span><span class="s2">"ONI_original"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">calendario</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+              <span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">REZAGO_ONI_DIAS</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"ONI"</span><span class="p">)</span><span class="o">.</span><span class="n">rename_axis</span><span class="p">(</span><span class="s2">"fecha"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+<span class="n">oni_diario</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evapotranspiracion-de-referencia-fao-56">
+<h2>6. Evapotranspiración de referencia (FAO-56)<a class="headerlink" href="#evapotranspiracion-de-referencia-fao-56" title="Link to this heading">#</a></h2>
+<p>ET0 no viene en POWER: se calcula con Penman-Monteith a partir de temperatura, humedad, viento, radiación y presión (Allen et al., 1998). Es necesaria para la demanda de agua de los cultivos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">partes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">power</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"punto"</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">g</span><span class="p">[</span><span class="s2">"ET0"</span><span class="p">]</span> <span class="o">=</span> <span class="n">et0_penman_monteith</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">T2M_MAX</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">T2M_MIN</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">RH2M</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">WS2M</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">ALLSKY_SFC_SW_DWN</span><span class="p">,</span>
+                                   <span class="n">lat</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dia_juliano</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+                                   <span class="n">elevacion_m</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">elevacion_m</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">presion_kpa</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">PS</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">partes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">partes</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dataset-final-control-de-calidad-y-guardado">
+<h2>7. Dataset final, control de calidad y guardado<a class="headerlink" href="#dataset-final-control-de-calidad-y-guardado" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">power</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">oni_diario</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"fecha"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s2">"many_to_one"</span><span class="p">)</span>
+<span class="n">columnas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"fecha"</span><span class="p">,</span> <span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"tipo_punto"</span><span class="p">,</span> <span class="s2">"lat"</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">,</span> <span class="s2">"elevacion_m"</span><span class="p">,</span> <span class="o">*</span><span class="n">PARAMETROS_POWER</span><span class="p">,</span> <span class="s2">"ET0"</span><span class="p">,</span> <span class="s2">"ONI"</span><span class="p">]</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">columnas</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">duplicados</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">duplicated</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">n_finca</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">dataset</span><span class="p">[</span><span class="s2">"punto"</span><span class="p">]</span> <span class="o">==</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PUNTO_OBJETIVO</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Periodo:"</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span> <span class="s2">"a"</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Sitios:"</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="s2">"| observaciones:"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"| columnas:"</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Duplicados sitio-fecha:"</span><span class="p">,</span> <span class="n">duplicados</span><span class="p">,</span> <span class="s2">"| observaciones de la finca:"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n_finca</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"1981-01-01"</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2025-12-31"</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">duplicados</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="n">dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ARCHIVO_DATOS</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fuentes_power</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">"fuentes_power.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Guardado:"</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ARCHIVO_DATOS</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"</span><span class="si">% f</span><span class="s2">altantes"</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fuentes_power</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_optimizacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">4. Decisión de siembra y reserva de agua</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../capitulos/limitaciones.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Limitaciones y consideraciones éticas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuentes-periodo-y-variables">1. Fuentes, periodo y variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#area-de-estudio-y-grilla-regional">2. Área de estudio y grilla regional</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conexion-con-reintentos-y-descarga-con-cache">3. Conexión con reintentos y descarga con caché</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-de-la-grilla-regional-y-de-la-finca">4. Descarga de la grilla regional y de la finca</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oceanic-nino-index-oni">5. Oceanic Niño Index (ONI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evapotranspiracion-de-referencia-fao-56">6. Evapotranspiración de referencia (FAO-56)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-final-control-de-calidad-y-guardado">7. Dataset final, control de calidad y guardado</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Edwin Yunis y Jairo Serrano — Maestría en Ingeniería Industrial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

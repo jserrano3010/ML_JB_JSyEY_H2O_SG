@@ -1,0 +1,1668 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Modelo base &#8212; Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/03_modelo_base';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Planificador de siembra y agua" href="../capitulos/03_planificador.html" />
+    <link rel="prev" title="2. Análisis exploratorio de datos" href="02_eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Planteamiento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/01_problema.html">Planteamiento del problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/02_marco_referencia.html">Marco de referencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Base de datos y análisis exploratorio</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00b_dataset_un_sitio.html">Dataset de un sitio (plan B)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_base_de_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelo base</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Modelo base</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Herramienta de decisión</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/03_planificador.html">Planificador de siembra y agua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_optimizacion.html">4. Decisión de siembra y reserva de agua</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preparado para el segundo entregable</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_construccion_dataset.html">Construcción reproducible del dataset regional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cierre</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/limitaciones.html">Limitaciones y consideraciones éticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/03_modelo_base.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3. Modelo base</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-horizonte">3.1 Evaluación por horizonte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizonte-confiable-n">3.2 Horizonte confiable <em>n</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-regimen-en-el-periodo-de-prueba">3.3 Cambio de régimen en el periodo de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-para-h-1">3.4 Diagnóstico para h = 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-de-aprendizaje-validacion-fija-20162020">Curva de aprendizaje (validación fija 2016–2020)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-predictoras-estandarizadas">Coeficientes (predictoras estandarizadas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esquema-secundario-solo-con-la-grilla-regional">3.5 Esquema secundario (solo con la grilla regional)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelo-base">
+<h1>3. Modelo base<a class="headerlink" href="#modelo-base" title="Link to this heading">#</a></h1>
+<p><strong>Objetivo:</strong> lluvia acumulada en la semana <span class="math notranslate nohighlight">\(h\)</span> posterior a la emisión, <span class="math notranslate nohighlight">\(y_h(t)\)</span>, en mm (<span class="math notranslate nohighlight">\(10\,y_h\)</span> m³/ha). Se emite un pronóstico por semana (los lunes).</p>
+<p><strong>Modelos comparados</strong> para cada horizonte:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DummyRegressor</span></code> (media de entrenamiento): <strong>línea base trivial</strong> exigida por la guía.</p></li>
+<li><p>Climatología: media de entrenamiento para la misma semana del año (referencia exigente).</p></li>
+<li><p>Ingenuo estacional: la lluvia de la misma ventana un año antes.</p></li>
+<li><p><strong>SVR lineal</strong> en <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> (imputación → escalado → <code class="docutils literal notranslate"><span class="pre">LinearSVR</span></code>). Por validación cruzada temporal se eligen <span class="math notranslate nohighlight">\(C\)</span>, la pérdida (cuadrática o <span class="math notranslate nohighlight">\(\varepsilon\)</span>-insensible) y si el objetivo se transforma con log1p.</p></li>
+</ul>
+<p><strong>Partición:</strong> con un solo sitio (plan B), cronológica: entrenamiento 1981–2020 con purga y prueba 2021–2025. Con la grilla regional, entrenamiento en los demás sitios y prueba en la finca (sitio no visto). La validación cruzada es de ventana creciente con <code class="docutils literal notranslate"><span class="pre">gap</span></code> = 7h + latencia días.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">src</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"figure.dpi"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">110</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src</span><span class="w"> </span><span class="kn">import</span> <span class="n">modelado</span> <span class="k">as</span> <span class="n">md</span><span class="p">,</span> <span class="n">espacial</span> <span class="k">as</span> <span class="n">esp</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ARCHIVO_DATOS</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">])</span>
+<span class="n">UN_SITIO</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"punto"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">particion</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">particion_cronologica</span> <span class="k">if</span> <span class="n">UN_SITIO</span> <span class="k">else</span> <span class="n">md</span><span class="o">.</span><span class="n">particion_sitio_futuro</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Esquema:"</span><span class="p">,</span> <span class="s2">"cronológico (un sitio)"</span> <span class="k">if</span> <span class="n">UN_SITIO</span> <span class="k">else</span> <span class="s2">"sitio no visto y años futuros"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Esquema: cronológico (un sitio)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="evaluacion-por-horizonte">
+<h2>3.1 Evaluación por horizonte<a class="headerlink" href="#evaluacion-por-horizonte" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span><span class="p">,</span> <span class="n">cvs</span><span class="p">,</span> <span class="n">periodos</span><span class="p">,</span> <span class="n">AJ</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">HORIZONTES_SEMANAS</span><span class="p">:</span>
+    <span class="n">tabla</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">tabla_modelado</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">columnas_predictoras</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+    <span class="n">tr</span><span class="p">,</span> <span class="n">te</span> <span class="o">=</span> <span class="n">particion</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">tr</span> <span class="o">=</span> <span class="n">tr</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"fecha"</span><span class="p">,</span> <span class="s2">"punto"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">te</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"fecha"</span><span class="p">,</span> <span class="s2">"punto"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">md</span><span class="o">.</span><span class="n">cv_temporal</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">fecha</span><span class="p">,</span> <span class="n">gap_dias</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">DIAS_POR_SEMANA</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="n">cfg</span><span class="o">.</span><span class="n">LATENCIA_DIAS</span><span class="p">))</span>
+    <span class="n">modelo</span><span class="p">,</span> <span class="n">mejor</span><span class="p">,</span> <span class="n">rmse_cv</span><span class="p">,</span> <span class="n">grilla</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">ajustar_svr</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">sp</span><span class="p">)</span>
+
+    <span class="c1"># Habilidad en validación cruzada con la configuración elegida</span>
+    <span class="n">es</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">sp</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">pipeline_svr</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"C"</span><span class="p">],</span> <span class="n">log_objetivo</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"log1p"</span><span class="p">]),</span> <span class="n">loss</span><span class="o">=</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"loss"</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">cols</span><span class="p">],</span> <span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">])</span>
+        <span class="n">es</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">],</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">cols</span><span class="p">]))))</span>
+        <span class="n">ec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">],</span> <span class="n">md</span><span class="o">.</span><span class="n">climatologia</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">],</span> <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">)(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">]))))</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">es</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ec</span><span class="p">)</span>
+
+    <span class="c1"># Intervalos conformales con los residuos del último fold</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">sp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mc</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">pipeline_svr</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"C"</span><span class="p">],</span> <span class="n">log_objetivo</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"log1p"</span><span class="p">]),</span> <span class="n">loss</span><span class="o">=</span><span class="n">mejor</span><span class="p">[</span><span class="s2">"loss"</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">cols</span><span class="p">],</span> <span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">])</span>
+    <span class="n">cal</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">cuantiles_conformales</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">],</span> <span class="n">mc</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">cols</span><span class="p">]),</span> <span class="n">niveles</span><span class="o">=</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.975</span><span class="p">))</span>
+
+    <span class="n">preds</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Dummy (media)"</span><span class="p">:</span> <span class="n">md</span><span class="o">.</span><span class="n">pipeline_dummy</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tr</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">tr</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">te</span><span class="p">[</span><span class="n">cols</span><span class="p">]),</span>
+             <span class="s2">"Climatología"</span><span class="p">:</span> <span class="n">md</span><span class="o">.</span><span class="n">climatologia</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">)(</span><span class="n">te</span><span class="p">),</span>
+             <span class="s2">"Ingenuo estacional"</span><span class="p">:</span> <span class="n">te</span><span class="o">.</span><span class="n">base_ingenuo_estacional</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+             <span class="s2">"SVR lineal"</span><span class="p">:</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">te</span><span class="p">[</span><span class="n">cols</span><span class="p">])}</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">preds</span><span class="p">[</span><span class="s2">"Climatología"</span><span class="p">]</span>
+    <span class="n">bloque</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">te</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">yhat</span> <span class="ow">in</span> <span class="n">preds</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">metricas</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">ok</span><span class="p">],</span> <span class="n">yhat</span><span class="p">[</span><span class="n">ok</span><span class="p">])</span>
+        <span class="n">ci</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">bootstrap_bloques</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">ok</span><span class="p">],</span> <span class="n">yhat</span><span class="p">[</span><span class="n">ok</span><span class="p">],</span> <span class="n">ref</span><span class="p">[</span><span class="n">ok</span><span class="p">],</span> <span class="n">largo_bloque</span><span class="o">=</span><span class="n">bloque</span><span class="p">,</span> <span class="n">n_boot</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"h"</span><span class="p">:</span> <span class="n">h</span><span class="p">,</span> <span class="s2">"modelo"</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="o">**</span><span class="n">m</span><span class="p">,</span> <span class="s2">"RMSE_inf"</span><span class="p">:</span> <span class="n">ci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"RMSE"</span><span class="p">,</span> <span class="s2">"inf"</span><span class="p">],</span> <span class="s2">"RMSE_sup"</span><span class="p">:</span> <span class="n">ci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"RMSE"</span><span class="p">,</span> <span class="s2">"sup"</span><span class="p">],</span>
+                      <span class="s2">"SS"</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">m</span><span class="p">[</span><span class="s2">"RMSE"</span><span class="p">]</span> <span class="o">/</span> <span class="n">md</span><span class="o">.</span><span class="n">metricas</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">ok</span><span class="p">],</span> <span class="n">ref</span><span class="p">[</span><span class="n">ok</span><span class="p">])[</span><span class="s2">"RMSE"</span><span class="p">],</span>
+                      <span class="s2">"SS_inf"</span><span class="p">:</span> <span class="n">ci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"SS_clim"</span><span class="p">,</span> <span class="s2">"inf"</span><span class="p">],</span> <span class="s2">"SS_sup"</span><span class="p">:</span> <span class="n">ci</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"SS_clim"</span><span class="p">,</span> <span class="s2">"sup"</span><span class="p">],</span> <span class="s2">"n_test"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">ok</span><span class="o">.</span><span class="n">sum</span><span class="p">())})</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">aplicar_intervalo</span><span class="p">(</span><span class="n">preds</span><span class="p">[</span><span class="s2">"SVR lineal"</span><span class="p">],</span> <span class="n">cal</span><span class="p">)</span>
+    <span class="n">cvs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"h"</span><span class="p">:</span> <span class="n">h</span><span class="p">,</span> <span class="o">**</span><span class="n">mejor</span><span class="p">,</span> <span class="s2">"SS_cv_media"</span><span class="p">:</span> <span class="n">ss</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s2">"SS_cv_min"</span><span class="p">:</span> <span class="n">ss</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="s2">"SS_cv_max"</span><span class="p">:</span> <span class="n">ss</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                <span class="s2">"folds_positivos"</span><span class="p">:</span> <span class="nb">int</span><span class="p">((</span><span class="n">ss</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+                <span class="s2">"cobertura_95"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">te</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">q</span><span class="p">[</span><span class="mf">0.025</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="n">q</span><span class="p">[</span><span class="mf">0.975</span><span class="p">]))),</span>
+                <span class="s2">"cobertura_P5"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">q</span><span class="p">[</span><span class="mf">0.05</span><span class="p">]))})</span>
+    <span class="n">AJ</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">modelo</span><span class="o">=</span><span class="n">modelo</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">cal</span><span class="o">=</span><span class="n">cal</span><span class="p">,</span> <span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span> <span class="n">te</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">yhat</span><span class="o">=</span><span class="n">preds</span><span class="p">[</span><span class="s2">"SVR lineal"</span><span class="p">],</span> <span class="n">clim</span><span class="o">=</span><span class="n">ref</span><span class="p">),</span> <span class="n">mejor</span><span class="o">=</span><span class="n">mejor</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"h = </span><span class="si">{</span><span class="n">h</span><span class="si">:</span><span class="s2">&gt;2</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">mejor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">);</span> <span class="n">cv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cvs</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="s2">"resultados_horizontes.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h =  1: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.01, 'RMSE_cv': 22.53578095492299}
+h =  2: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.01, 'RMSE_cv': 22.689712686617877}
+h =  4: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.01, 'RMSE_cv': 22.546784231422095}
+h =  8: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.1, 'RMSE_cv': 23.130577801250396}
+h = 13: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.1, 'RMSE_cv': 23.276775045972066}
+h = 26: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.1, 'RMSE_cv': 23.799312469362267}
+h = 52: {'log1p': False, 'loss': 'squared_epsilon_insensitive', 'C': 0.1, 'RMSE_cv': 24.237550125894067}
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>h</th>
+      <th>modelo</th>
+      <th>RMSE</th>
+      <th>MAE</th>
+      <th>WAPE</th>
+      <th>MAPE_y&gt;0</th>
+      <th>R2</th>
+      <th>RMSE_inf</th>
+      <th>RMSE_sup</th>
+      <th>SS</th>
+      <th>SS_inf</th>
+      <th>SS_sup</th>
+      <th>n_test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Dummy (media)</td>
+      <td>46.46</td>
+      <td>26.3</td>
+      <td>0.884</td>
+      <td>43.3</td>
+      <td>-0.063</td>
+      <td>31.46</td>
+      <td>62.3</td>
+      <td>-0.072</td>
+      <td>-0.117</td>
+      <td>-0.039</td>
+      <td>260</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Climatología</td>
+      <td>43.35</td>
+      <td>21.73</td>
+      <td>0.731</td>
+      <td>15.94</td>
+      <td>0.075</td>
+      <td>28.8</td>
+      <td>58.07</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>260</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Ingenuo estacional</td>
+      <td>55.29</td>
+      <td>29.53</td>
+      <td>0.993</td>
+      <td>13.72</td>
+      <td>-0.505</td>
+      <td>39.95</td>
+      <td>70.7</td>
+      <td>-0.275</td>
+      <td>-0.731</td>
+      <td>-0.059</td>
+      <td>260</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>SVR lineal</td>
+      <td>40.28</td>
+      <td>22.86</td>
+      <td>0.769</td>
+      <td>25.77</td>
+      <td>0.201</td>
+      <td>26.57</td>
+      <td>54.27</td>
+      <td>0.071</td>
+      <td>0.037</td>
+      <td>0.107</td>
+      <td>260</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>Dummy (media)</td>
+      <td>46.54</td>
+      <td>26.38</td>
+      <td>0.885</td>
+      <td>43.5</td>
+      <td>-0.063</td>
+      <td>31.64</td>
+      <td>61.94</td>
+      <td>-0.072</td>
+      <td>-0.121</td>
+      <td>-0.04</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2</td>
+      <td>Climatología</td>
+      <td>43.43</td>
+      <td>21.77</td>
+      <td>0.73</td>
+      <td>16</td>
+      <td>0.075</td>
+      <td>28.88</td>
+      <td>57.83</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2</td>
+      <td>Ingenuo estacional</td>
+      <td>55.39</td>
+      <td>29.59</td>
+      <td>0.993</td>
+      <td>13.77</td>
+      <td>-0.506</td>
+      <td>39.66</td>
+      <td>70.91</td>
+      <td>-0.275</td>
+      <td>-0.725</td>
+      <td>-0.058</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>SVR lineal</td>
+      <td>40.57</td>
+      <td>23.21</td>
+      <td>0.779</td>
+      <td>28.42</td>
+      <td>0.192</td>
+      <td>27.1</td>
+      <td>54.16</td>
+      <td>0.066</td>
+      <td>0.026</td>
+      <td>0.108</td>
+      <td>259</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4</td>
+      <td>Dummy (media)</td>
+      <td>46.71</td>
+      <td>26.49</td>
+      <td>0.883</td>
+      <td>43.85</td>
+      <td>-0.065</td>
+      <td>32.23</td>
+      <td>62.4</td>
+      <td>-0.071</td>
+      <td>-0.119</td>
+      <td>-0.038</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4</td>
+      <td>Climatología</td>
+      <td>43.59</td>
+      <td>21.89</td>
+      <td>0.73</td>
+      <td>16.12</td>
+      <td>0.073</td>
+      <td>29.31</td>
+      <td>58.26</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>4</td>
+      <td>Ingenuo estacional</td>
+      <td>55.6</td>
+      <td>29.78</td>
+      <td>0.993</td>
+      <td>13.88</td>
+      <td>-0.509</td>
+      <td>39.55</td>
+      <td>71.38</td>
+      <td>-0.275</td>
+      <td>-0.73</td>
+      <td>-0.07</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>4</td>
+      <td>SVR lineal</td>
+      <td>41.31</td>
+      <td>23.51</td>
+      <td>0.784</td>
+      <td>26.68</td>
+      <td>0.167</td>
+      <td>28.09</td>
+      <td>55.28</td>
+      <td>0.052</td>
+      <td>0.004</td>
+      <td>0.096</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>8</td>
+      <td>Dummy (media)</td>
+      <td>47.04</td>
+      <td>26.73</td>
+      <td>0.886</td>
+      <td>44.65</td>
+      <td>-0.065</td>
+      <td>32.05</td>
+      <td>63.2</td>
+      <td>-0.073</td>
+      <td>-0.115</td>
+      <td>-0.039</td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>8</td>
+      <td>Climatología</td>
+      <td>43.85</td>
+      <td>21.95</td>
+      <td>0.728</td>
+      <td>16.36</td>
+      <td>0.074</td>
+      <td>30.14</td>
+      <td>59.52</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>8</td>
+      <td>Ingenuo estacional</td>
+      <td>55.97</td>
+      <td>29.96</td>
+      <td>0.993</td>
+      <td>14.1</td>
+      <td>-0.508</td>
+      <td>41.17</td>
+      <td>72.66</td>
+      <td>-0.276</td>
+      <td>-0.686</td>
+      <td>-0.073</td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>8</td>
+      <td>SVR lineal</td>
+      <td>41.45</td>
+      <td>23.53</td>
+      <td>0.78</td>
+      <td>29.38</td>
+      <td>0.173</td>
+      <td>28.86</td>
+      <td>56.45</td>
+      <td>0.055</td>
+      <td>0.018</td>
+      <td>0.091</td>
+      <td>253</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>13</td>
+      <td>Dummy (media)</td>
+      <td>47.44</td>
+      <td>26.96</td>
+      <td>0.877</td>
+      <td>44.88</td>
+      <td>-0.07</td>
+      <td>31.84</td>
+      <td>63.72</td>
+      <td>-0.071</td>
+      <td>-0.116</td>
+      <td>-0.036</td>
+      <td>248</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>13</td>
+      <td>Climatología</td>
+      <td>44.29</td>
+      <td>22.35</td>
+      <td>0.727</td>
+      <td>16.63</td>
+      <td>0.067</td>
+      <td>29.66</td>
+      <td>59.49</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>248</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>13</td>
+      <td>Ingenuo estacional</td>
+      <td>56.52</td>
+      <td>30.51</td>
+      <td>0.993</td>
+      <td>14.38</td>
+      <td>-0.519</td>
+      <td>41.64</td>
+      <td>72.33</td>
+      <td>-0.276</td>
+      <td>-0.663</td>
+      <td>-0.088</td>
+      <td>248</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>13</td>
+      <td>SVR lineal</td>
+      <td>41.49</td>
+      <td>23.6</td>
+      <td>0.768</td>
+      <td>32.4</td>
+      <td>0.181</td>
+      <td>28.27</td>
+      <td>55.3</td>
+      <td>0.063</td>
+      <td>0.023</td>
+      <td>0.114</td>
+      <td>248</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>26</td>
+      <td>Dummy (media)</td>
+      <td>48.59</td>
+      <td>27.48</td>
+      <td>0.852</td>
+      <td>39.1</td>
+      <td>-0.088</td>
+      <td>36.08</td>
+      <td>63.56</td>
+      <td>-0.074</td>
+      <td>-0.117</td>
+      <td>-0.045</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>26</td>
+      <td>Climatología</td>
+      <td>45.25</td>
+      <td>22.52</td>
+      <td>0.698</td>
+      <td>7.24</td>
+      <td>0.057</td>
+      <td>32.83</td>
+      <td>59.16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>26</td>
+      <td>Ingenuo estacional</td>
+      <td>58</td>
+      <td>31.73</td>
+      <td>0.983</td>
+      <td>11.67</td>
+      <td>-0.55</td>
+      <td>45.39</td>
+      <td>73.28</td>
+      <td>-0.282</td>
+      <td>-0.57</td>
+      <td>-0.117</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>26</td>
+      <td>SVR lineal</td>
+      <td>43.45</td>
+      <td>24.23</td>
+      <td>0.751</td>
+      <td>19.59</td>
+      <td>0.13</td>
+      <td>31.71</td>
+      <td>56.77</td>
+      <td>0.04</td>
+      <td>0.018</td>
+      <td>0.069</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>52</td>
+      <td>Dummy (media)</td>
+      <td>51.4</td>
+      <td>29.54</td>
+      <td>0.848</td>
+      <td>38.36</td>
+      <td>-0.117</td>
+      <td>42.06</td>
+      <td>64.66</td>
+      <td>-0.081</td>
+      <td>-0.123</td>
+      <td>-0.049</td>
+      <td>209</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>52</td>
+      <td>Climatología</td>
+      <td>47.54</td>
+      <td>23.16</td>
+      <td>0.665</td>
+      <td>4.846</td>
+      <td>0.045</td>
+      <td>38.12</td>
+      <td>59.87</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>209</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>52</td>
+      <td>Ingenuo estacional</td>
+      <td>61.08</td>
+      <td>33.92</td>
+      <td>0.973</td>
+      <td>12.93</td>
+      <td>-0.577</td>
+      <td>50.03</td>
+      <td>74.05</td>
+      <td>-0.285</td>
+      <td>-0.577</td>
+      <td>-0.103</td>
+      <td>209</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>52</td>
+      <td>SVR lineal</td>
+      <td>46.07</td>
+      <td>24.37</td>
+      <td>0.699</td>
+      <td>11.92</td>
+      <td>0.103</td>
+      <td>37.27</td>
+      <td>58.58</td>
+      <td>0.031</td>
+      <td>-0.002</td>
+      <td>0.057</td>
+      <td>209</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>h</th>
+      <th>log1p</th>
+      <th>loss</th>
+      <th>C</th>
+      <th>RMSE_cv</th>
+      <th>SS_cv_media</th>
+      <th>SS_cv_min</th>
+      <th>SS_cv_max</th>
+      <th>folds_positivos</th>
+      <th>cobertura_95</th>
+      <th>cobertura_P5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.01</td>
+      <td>22.54</td>
+      <td>0.048</td>
+      <td>-0.01</td>
+      <td>0.101</td>
+      <td>4</td>
+      <td>0.923</td>
+      <td>0.923</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.01</td>
+      <td>22.69</td>
+      <td>0.043</td>
+      <td>-0.029</td>
+      <td>0.083</td>
+      <td>4</td>
+      <td>0.9</td>
+      <td>0.892</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.01</td>
+      <td>22.55</td>
+      <td>0.045</td>
+      <td>-0.027</td>
+      <td>0.091</td>
+      <td>4</td>
+      <td>0.887</td>
+      <td>0.887</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.1</td>
+      <td>23.13</td>
+      <td>0.023</td>
+      <td>-0.027</td>
+      <td>0.065</td>
+      <td>3</td>
+      <td>0.897</td>
+      <td>0.877</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>13</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.1</td>
+      <td>23.28</td>
+      <td>0.018</td>
+      <td>-0.023</td>
+      <td>0.055</td>
+      <td>3</td>
+      <td>0.903</td>
+      <td>0.891</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>26</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.1</td>
+      <td>23.8</td>
+      <td>0.004</td>
+      <td>-0.037</td>
+      <td>0.033</td>
+      <td>3</td>
+      <td>0.894</td>
+      <td>0.894</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>52</td>
+      <td>False</td>
+      <td>squared_epsilon_insensitive</td>
+      <td>0.1</td>
+      <td>24.24</td>
+      <td>0.003</td>
+      <td>-0.036</td>
+      <td>0.052</td>
+      <td>2</td>
+      <td>0.933</td>
+      <td>0.957</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Interpretación.</strong> El SVR lineal supera a la línea base trivial (Dummy) en todos los horizontes y también a la climatología, que es la referencia exigente. La validación eligió la pérdida cuadrática sin transformar el objetivo: la pérdida ε-insensible y la transformación log producen predicciones cercanas a la mediana, que en una variable tan asimétrica subestiman las semanas lluviosas; la pérdida cuadrática estima la media condicional, coherente con el RMSE. El MAE del SVR es levemente mayor que el de la climatología precisamente porque el modelo optimiza el error cuadrático. MAPE da valores de miles por ciento por las semanas con lluvia casi nula y no es interpretable; se usa WAPE. <strong>Nota crítica de la guía:</strong> ningún R² se acerca al 80 % y la mejora sobre la climatología es modesta, lo que descarta un desempeño inflado por fuga y es coherente con la baja predictibilidad de la lluvia semanal.</p>
+</section>
+<section id="horizonte-confiable-n">
+<h2>3.2 Horizonte confiable <em>n</em><a class="headerlink" href="#horizonte-confiable-n" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">svr</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">modelo</span> <span class="o">==</span> <span class="s2">"SVR lineal"</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">N_PRUEBA</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">svr</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">SS_inf</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">N_PRUEBA</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">break</span>
+<span class="n">N_CV</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">folds_positivos</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span> <span class="n">N_CV</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">break</span>
+<span class="n">N_CONFIABLE</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">N_PRUEBA</span><span class="p">,</span> <span class="n">N_CV</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">svr</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">svr</span><span class="o">.</span><span class="n">SS</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">svr</span><span class="o">.</span><span class="n">SS</span> <span class="o">-</span> <span class="n">svr</span><span class="o">.</span><span class="n">SS_inf</span><span class="p">,</span> <span class="n">svr</span><span class="o">.</span><span class="n">SS_sup</span> <span class="o">-</span> <span class="n">svr</span><span class="o">.</span><span class="n">SS</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"o-"</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"prueba (IC 95 %)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">SS_cv_media</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="n">cv</span><span class="o">.</span><span class="n">SS_cv_media</span> <span class="o">-</span> <span class="n">cv</span><span class="o">.</span><span class="n">SS_cv_min</span><span class="p">,</span> <span class="n">cv</span><span class="o">.</span><span class="n">SS_cv_max</span> <span class="o">-</span> <span class="n">cv</span><span class="o">.</span><span class="n">SS_cv_media</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"s--"</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"validación cruzada (rango de folds)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s2">"log"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">svr</span><span class="o">.</span><span class="n">h</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">svr</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"horizonte (semanas)"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"skill vs climatología"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n según prueba: </span><span class="si">{</span><span class="n">N_PRUEBA</span><span class="si">}</span><span class="s2"> | n según validación (≥ 4 de 5 folds positivos): </span><span class="si">{</span><span class="n">N_CV</span><span class="si">}</span><span class="s2"> | n adoptado (conservador): </span><span class="si">{</span><span class="n">N_CONFIABLE</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0202b95ee0812049257e722d9400a2237e2c1f0ea44d6282e9e55d080726c538.png" src="../_images/0202b95ee0812049257e722d9400a2237e2c1f0ea44d6282e9e55d080726c538.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n según prueba: 26 | n según validación (≥ 4 de 5 folds positivos): 4 | n adoptado (conservador): 4
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Interpretación.</strong> La mejora sobre la climatología es de alrededor del 7 % a una semana en prueba y del 5 % en validación cruzada, y decrece con el horizonte. El criterio de prueba sostiene habilidad hasta 26 semanas, pero el de validación solo hasta 4 semanas; se adopta el conservador, <strong>n = 4 semanas</strong>. Más allá, la planeación de la siembra debe apoyarse en escenarios climatológicos y, en el segundo entregable, en el pronóstico estacional con ENSO.</p>
+</section>
+<section id="cambio-de-regimen-en-el-periodo-de-prueba">
+<h2>3.3 Cambio de régimen en el periodo de prueba<a class="headerlink" href="#cambio-de-regimen-en-el-periodo-de-prueba" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">aj</span> <span class="ow">in</span> <span class="n">AJ</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">te</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"te"</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">"2021"</span><span class="p">,</span> <span class="n">te</span><span class="p">[</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2021</span><span class="p">]),</span> <span class="p">(</span><span class="s2">"2022–2025"</span><span class="p">,</span> <span class="n">te</span><span class="p">[</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="mi">2022</span><span class="p">])]:</span>
+        <span class="n">rs</span><span class="p">,</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">g</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">g</span><span class="o">.</span><span class="n">yhat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">g</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">g</span><span class="o">.</span><span class="n">clim</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+        <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"h"</span><span class="p">:</span> <span class="n">h</span><span class="p">,</span> <span class="s2">"periodo"</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="s2">"RMSE_svr"</span><span class="p">:</span> <span class="n">rs</span><span class="p">,</span> <span class="s2">"RMSE_clim"</span><span class="p">:</span> <span class="n">rc</span><span class="p">,</span> <span class="s2">"SS"</span><span class="p">:</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">rs</span> <span class="o">/</span> <span class="n">rc</span><span class="p">,</span> <span class="s2">"y_media"</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Lluvia media semanal (objetivo) en entrenamiento y prueba:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">AJ</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"tr"</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">AJ</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"te"</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lluvia media semanal (objetivo) en entrenamiento y prueba: 18.5 29.7
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>h</th>
+      <th>periodo</th>
+      <th>RMSE_svr</th>
+      <th>RMSE_clim</th>
+      <th>SS</th>
+      <th>y_media</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2021</td>
+      <td>14.37</td>
+      <td>19.13</td>
+      <td>0.249</td>
+      <td>8.621</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>2022–2025</td>
+      <td>44.46</td>
+      <td>47.52</td>
+      <td>0.064</td>
+      <td>35.02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2021</td>
+      <td>14.24</td>
+      <td>19.06</td>
+      <td>0.253</td>
+      <td>8.382</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>2022–2025</td>
+      <td>44.81</td>
+      <td>47.63</td>
+      <td>0.059</td>
+      <td>35.19</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>2021</td>
+      <td>14.52</td>
+      <td>19.01</td>
+      <td>0.236</td>
+      <td>8.174</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4</td>
+      <td>2022–2025</td>
+      <td>45.68</td>
+      <td>47.86</td>
+      <td>0.046</td>
+      <td>35.52</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>8</td>
+      <td>2021</td>
+      <td>16.03</td>
+      <td>17.98</td>
+      <td>0.108</td>
+      <td>6.772</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>2022–2025</td>
+      <td>45.78</td>
+      <td>48.34</td>
+      <td>0.053</td>
+      <td>36.23</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13</td>
+      <td>2021</td>
+      <td>20.06</td>
+      <td>19.2</td>
+      <td>-0.045</td>
+      <td>7.621</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>13</td>
+      <td>2022–2025</td>
+      <td>45.52</td>
+      <td>48.82</td>
+      <td>0.068</td>
+      <td>36.85</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>26</td>
+      <td>2021</td>
+      <td>23.34</td>
+      <td>23.4</td>
+      <td>0.003</td>
+      <td>16.01</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>26</td>
+      <td>2022–2025</td>
+      <td>47.63</td>
+      <td>49.74</td>
+      <td>0.042</td>
+      <td>36.9</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>52</td>
+      <td>2021</td>
+      <td>34.42</td>
+      <td>33.73</td>
+      <td>-0.02</td>
+      <td>35.42</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>52</td>
+      <td>2022–2025</td>
+      <td>49.32</td>
+      <td>51.3</td>
+      <td>0.039</td>
+      <td>34.66</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Interpretación.</strong> El periodo de prueba no es comparable con el entrenamiento: la lluvia semanal media pasa de 18,5 mm a 29,7 mm, y 2022–2025 registra entre 1.700 y 2.000 mm por año. En 2021, un año más cercano a lo habitual, el SVR mejora a la climatología en torno al 25 % a una semana; en 2022–2025 la mejora baja a cerca del 6 %. El cambio puede ser climático (La Niña 2021–2023) o un cambio en la fuente de precipitación de POWER; debe verificarse con estaciones del IDEAM. Los errores absolutos de prueba (RMSE cercano a 40 mm) están dominados por ese régimen y no representan el error esperado en años normales (unos 23 mm en validación).</p>
+</section>
+<section id="diagnostico-para-h-1">
+<h2>3.4 Diagnóstico para h = 1<a class="headerlink" href="#diagnostico-para-h-1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aj</span> <span class="o">=</span> <span class="n">AJ</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="n">te</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"te"</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">();</span> <span class="n">te</span><span class="p">[</span><span class="s2">"resid"</span><span class="p">]</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">te</span><span class="o">.</span><span class="n">yhat</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">te</span><span class="p">)),</span> <span class="n">te</span><span class="o">.</span><span class="n">yhat</span><span class="p">];</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">resid</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">b_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span> <span class="n">r2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">((</span><span class="n">e2</span> <span class="o">-</span> <span class="n">X</span> <span class="o">@</span> <span class="n">b_</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">((</span><span class="n">e2</span> <span class="o">-</span> <span class="n">e2</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Breusch-Pagan: LM = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">te</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">chi2</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">te</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shapiro-Wilk p = </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span><span class="o">.</span><span class="n">pvalue</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> | asimetría de residuos = </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">mean</span><span class="p">();</span> <span class="n">ac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="n">k</span><span class="p">]</span> <span class="o">@</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">:])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">27</span><span class="p">)]);</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">1.96</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Residuos"</span><span class="p">)</span>
+<span class="n">stats</span><span class="o">.</span><span class="n">probplot</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s2">"norm"</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"QQ-plot"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">yhat</span><span class="p">,</span> <span class="n">te</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"k"</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Residuo vs predicción"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">27</span><span class="p">),</span> <span class="n">ac</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">axhspan</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"grey"</span><span class="p">);</span> <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"ACF de residuos"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Breusch-Pagan: LM = 5.58, p = 0.0182
+Shapiro-Wilk p = 2.78e-22 | asimetría de residuos = 3.99
+</pre></div>
+</div>
+<img alt="../_images/abaa2baa8e298c7014b9a722853b1c61ff26f079b53fe938c735915fdf1895f2.png" src="../_images/abaa2baa8e298c7014b9a722853b1c61ff26f079b53fe938c735915fdf1895f2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">aplicar_intervalo</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">yhat</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"cal"</span><span class="p">])</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="p">,</span> <span class="n">te</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"observado"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="p">,</span> <span class="n">te</span><span class="o">.</span><span class="n">yhat</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"SVR lineal"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="p">,</span> <span class="n">te</span><span class="o">.</span><span class="n">clim</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"climatología"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">te</span><span class="o">.</span><span class="n">fecha</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="mf">0.025</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="mf">0.975</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"intervalo 95 %"</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">4</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"mm"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bca48f45a5e8a336a67cc84464ce108db3efc829551bbe9f511a5dde675d7aa1.png" src="../_images/bca48f45a5e8a336a67cc84464ce108db3efc829551bbe9f511a5dde675d7aa1.png" />
+</div>
+</div>
+<section id="curva-de-aprendizaje-validacion-fija-20162020">
+<h3>Curva de aprendizaje (validación fija 2016–2020)<a class="headerlink" href="#curva-de-aprendizaje-validacion-fija-20162020" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tr</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"tr"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"fecha"</span><span class="p">);</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"cols"</span><span class="p">];</span> <span class="n">mj</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"mejor"</span><span class="p">]</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="n">tr</span><span class="o">.</span><span class="n">fecha</span> <span class="o">&gt;=</span> <span class="s2">"2016-01-01"</span><span class="p">];</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">tr</span><span class="p">[</span><span class="n">tr</span><span class="o">.</span><span class="n">fecha</span> <span class="o">&lt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">"2016-01-01"</span><span class="p">)</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">10</span><span class="p">)]</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">)]:</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">pipeline_svr</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">mj</span><span class="p">[</span><span class="s2">"C"</span><span class="p">],</span> <span class="n">log_objetivo</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">mj</span><span class="p">[</span><span class="s2">"log1p"</span><span class="p">]),</span> <span class="n">loss</span><span class="o">=</span><span class="n">mj</span><span class="p">[</span><span class="s2">"loss"</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">lc</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">cols</span><span class="p">]))),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="n">cols</span><span class="p">]))),</span>
+               <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">md</span><span class="o">.</span><span class="n">climatologia</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">val</span><span class="p">)))])</span>
+<span class="n">lc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lc</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"semanas"</span><span class="p">,</span> <span class="s2">"RMSE_train"</span><span class="p">,</span> <span class="s2">"RMSE_val"</span><span class="p">,</span> <span class="s2">"RMSE_clim_val"</span><span class="p">])</span>
+<span class="n">lc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"semanas"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">));</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"RMSE (mm)"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span> <span class="n">lc</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1b5fac14855cd80787e2a32df94ac76cb492903f149cb0f25c74c786fc24820a.png" src="../_images/1b5fac14855cd80787e2a32df94ac76cb492903f149cb0f25c74c786fc24820a.png" />
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>semanas</th>
+      <th>RMSE_train</th>
+      <th>RMSE_val</th>
+      <th>RMSE_clim_val</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>16.59</td>
+      <td>58.23</td>
+      <td>39.27</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>200</td>
+      <td>16.92</td>
+      <td>37.17</td>
+      <td>37.45</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>400</td>
+      <td>20.96</td>
+      <td>33.59</td>
+      <td>35.78</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>700</td>
+      <td>21.14</td>
+      <td>33.41</td>
+      <td>35.7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000</td>
+      <td>20.06</td>
+      <td>33.32</td>
+      <td>35.66</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1825</td>
+      <td>19.21</td>
+      <td>33.3</td>
+      <td>36.13</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="coeficientes-predictoras-estandarizadas">
+<h3>Coeficientes (predictoras estandarizadas)<a class="headerlink" href="#coeficientes-predictoras-estandarizadas" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">aj</span><span class="p">[</span><span class="s2">"modelo"</span><span class="p">];</span> <span class="n">svr_</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">"svr"</span><span class="p">]</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="s2">"named_steps"</span><span class="p">)</span> <span class="k">else</span> <span class="n">mod</span><span class="o">.</span><span class="n">regressor_</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s2">"svr"</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">svr_</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cos_doy</th>
+      <td>-5.456</td>
+    </tr>
+    <tr>
+      <th>cos2_doy</th>
+      <td>-5.15</td>
+    </tr>
+    <tr>
+      <th>GWETTOP_media_30d</th>
+      <td>4.384</td>
+    </tr>
+    <tr>
+      <th>P_suma_30d</th>
+      <td>3.662</td>
+    </tr>
+    <tr>
+      <th>sin3_doy</th>
+      <td>3.168</td>
+    </tr>
+    <tr>
+      <th>GWETROOT_media_30d</th>
+      <td>3.062</td>
+    </tr>
+    <tr>
+      <th>T2M_media_7d</th>
+      <td>3.021</td>
+    </tr>
+    <tr>
+      <th>ALLSKY_SFC_SW_DWN_media_7d</th>
+      <td>-2.68</td>
+    </tr>
+    <tr>
+      <th>P_suma_90d</th>
+      <td>2.631</td>
+    </tr>
+    <tr>
+      <th>T2M_MAX_media_7d</th>
+      <td>-2.492</td>
+    </tr>
+    <tr>
+      <th>WS2M_media_7d</th>
+      <td>-1.644</td>
+    </tr>
+    <tr>
+      <th>ALLSKY_SFC_SW_DWN_media_30d</th>
+      <td>1.619</td>
+    </tr>
+    <tr>
+      <th>P_suma_365d</th>
+      <td>1.552</td>
+    </tr>
+    <tr>
+      <th>GWETROOT_media_7d</th>
+      <td>-1.217</td>
+    </tr>
+    <tr>
+      <th>T2M_media_30d</th>
+      <td>1.215</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Interpretación.</strong> Los residuos no son normales (Shapiro-Wilk p &lt; 0,001; asimetría ≈ 4): el modelo no anticipa los aguaceros extremos. Hay heterocedasticidad (Breusch-Pagan p ≈ 0,02): el error crece con la lluvia pronosticada. La media de los residuos es positiva, es decir, el modelo subestima en el periodo lluvioso de prueba, y queda autocorrelación a un rezago, señal de memoria no capturada. La cobertura del intervalo del 95 % está entre 89 % y 93 %, algo menor que la nominal, coherente con el cambio de régimen. En la curva de aprendizaje el error de validación se estabiliza desde unas 400 semanas, por debajo de la climatología, y la brecha con entrenamiento es estable: no hay sobreajuste, y agregar años del mismo sitio no mejoraría mucho; eso respalda el diseño regional. Los coeficientes de mayor magnitud son los armónicos del ciclo anual y la humedad del suelo y la lluvia de los últimos 30 días (más agua reciente anticipa más lluvia); más radiación reciente (cielo despejado) reduce la lluvia esperada. Estos hallazgos motivan, para el siguiente entregable, modelos no lineales con pérdida Poisson o Tweedie e intervalos por cuantiles.</p>
+</section>
+</section>
+<section id="esquema-secundario-solo-con-la-grilla-regional">
+<h2>3.5 Esquema secundario (solo con la grilla regional)<a class="headerlink" href="#esquema-secundario-solo-con-la-grilla-regional" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">UN_SITIO</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"No aplica con un solo sitio."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">tabla</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">tabla_modelado</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span> <span class="n">cols</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">columnas_predictoras</span><span class="p">(</span><span class="n">tabla</span><span class="p">)</span>
+    <span class="n">tr2</span><span class="p">,</span> <span class="n">te2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">particion_cronologica</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span> <span class="n">mj</span> <span class="o">=</span> <span class="n">AJ</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"mejor"</span><span class="p">]</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">pipeline_svr</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">mj</span><span class="p">[</span><span class="s2">"C"</span><span class="p">],</span> <span class="n">log_objetivo</span><span class="o">=</span><span class="nb">bool</span><span class="p">(</span><span class="n">mj</span><span class="p">[</span><span class="s2">"log1p"</span><span class="p">]),</span> <span class="n">loss</span><span class="o">=</span><span class="n">mj</span><span class="p">[</span><span class="s2">"loss"</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tr2</span><span class="p">[</span><span class="n">cols</span><span class="p">],</span> <span class="n">tr2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">te2</span> <span class="o">=</span> <span class="n">te2</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">resid</span><span class="o">=</span><span class="n">te2</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">m2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">te2</span><span class="p">[</span><span class="n">cols</span><span class="p">]))</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"punto"</span><span class="p">)[[</span><span class="s2">"lat"</span><span class="p">,</span> <span class="s2">"lon"</span><span class="p">]]</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">esp</span><span class="o">.</span><span class="n">pesos_inverso_distancia</span><span class="p">(</span><span class="n">coords</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">coords</span><span class="o">.</span><span class="n">lon</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"I de Moran de los residuos medios por sitio:"</span><span class="p">,</span> <span class="n">esp</span><span class="o">.</span><span class="n">moran_i</span><span class="p">(</span><span class="n">te2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"punto"</span><span class="p">)[</span><span class="s2">"resid"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">coords</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">W</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No aplica con un solo sitio.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_eda.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">2. Análisis exploratorio de datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../capitulos/03_planificador.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Planificador de siembra y agua</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-por-horizonte">3.1 Evaluación por horizonte</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#horizonte-confiable-n">3.2 Horizonte confiable <em>n</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-de-regimen-en-el-periodo-de-prueba">3.3 Cambio de régimen en el periodo de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-para-h-1">3.4 Diagnóstico para h = 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curva-de-aprendizaje-validacion-fija-20162020">Curva de aprendizaje (validación fija 2016–2020)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coeficientes-predictoras-estandarizadas">Coeficientes (predictoras estandarizadas)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#esquema-secundario-solo-con-la-grilla-regional">3.5 Esquema secundario (solo con la grilla regional)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Edwin Yunis y Jairo Serrano — Maestría en Ingeniería Industrial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1119 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Base de datos &#8212; Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/01_base_de_datos';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="2. Análisis exploratorio de datos" href="02_eda.html" />
+    <link rel="prev" title="Dataset de un sitio (plan B)" href="00b_dataset_un_sitio.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Pronóstico de agua y planificación de siembras bajo sequía en Sabanagrande, Atlántico
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Planteamiento</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/01_problema.html">Planteamiento del problema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/02_marco_referencia.html">Marco de referencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Base de datos y análisis exploratorio</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00b_dataset_un_sitio.html">Dataset de un sitio (plan B)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Base de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Herramienta de decisión</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/03_planificador.html">Planificador de siembra y agua</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_optimizacion.html">4. Decisión de siembra y reserva de agua</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Preparado para el segundo entregable</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_construccion_dataset.html">Construcción reproducible del dataset regional</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cierre</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/limitaciones.html">Limitaciones y consideraciones éticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../capitulos/referencias.html">Referencias</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/01_base_de_datos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Base de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserva-del-conjunto-de-prueba">1.1 Reserva del conjunto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-muestra">1.2 Tamaño de la muestra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables">1.3 Diccionario de variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes-solo-entrenamiento">1.4 Valores faltantes (solo entrenamiento)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-y-casi-duplicados">1.5 Duplicados y casi-duplicados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-imposibles-o-inconsistentes">1.6 Valores imposibles o inconsistentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-de-muestreo-y-representatividad">1.7 Sesgos de muestreo y representatividad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-eticas">1.8 Consideraciones éticas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="base-de-datos">
+<h1>1. Base de datos<a class="headerlink" href="#base-de-datos" title="Link to this heading">#</a></h1>
+<section id="reserva-del-conjunto-de-prueba">
+<h2>1.1 Reserva del conjunto de prueba<a class="headerlink" href="#reserva-del-conjunto-de-prueba" title="Link to this heading">#</a></h2>
+<p>Antes de mirar cualquier estadístico se separa el conjunto de prueba: <strong>la finca (sitio no visto) en 2021–2025</strong>. El entrenamiento usa los sitios regionales hasta 2020. Los datos de 2021–2025 de los sitios regionales no se usan, porque comparten los mismos eventos climáticos que la finca y producirían fuga. Todas las decisiones de imputación, transformación, selección de variables y umbrales se toman solo con el entrenamiento.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">src</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">cfg</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"figure.dpi"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">110</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">DATA_PROCESSED</span> <span class="o">/</span> <span class="n">cfg</span><span class="o">.</span><span class="n">ARCHIVO_DATOS</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">])</span>
+<span class="n">OBJ</span> <span class="o">=</span> <span class="s2">"PRECTOTCORR"</span>
+<span class="n">futuro</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">INICIO_TEST</span>
+<span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="s2">"punto"</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>      <span class="c1"># plan B: un solo sitio, partición cronológica</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">futuro</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="n">futuro</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">else</span><span class="p">:</span>                               <span class="c1"># diseño regional: sitio no visto y años futuros</span>
+    <span class="n">es_finca</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"punto"</span><span class="p">]</span> <span class="o">==</span> <span class="n">cfg</span><span class="o">.</span><span class="n">PUNTO_OBJETIVO</span>
+    <span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">es_finca</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">futuro</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="n">es_finca</span> <span class="o">&amp;</span> <span class="n">futuro</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Entrenamiento: </span><span class="si">{</span><span class="n">train_df</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> sitio(s), </span><span class="si">{</span><span class="n">train_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">train_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> filas)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Prueba:        </span><span class="si">{</span><span class="n">test_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">test_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> filas)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sin uso:       </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">train_df</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> filas"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entrenamiento: 1 sitio(s), 1981-01-01 → 2020-12-31 (14,610 filas)
+Prueba:        2021-01-01 → 2025-12-31 (1,826 filas)
+Sin uso:       0 filas
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tamano-de-la-muestra">
+<h2>1.2 Tamaño de la muestra<a class="headerlink" href="#tamano-de-la-muestra" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">VARS</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">POWER_PARAMS</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s2">"ET0"</span><span class="p">]</span> <span class="o">+</span> <span class="p">([</span><span class="s2">"ONI"</span><span class="p">]</span> <span class="k">if</span> <span class="s2">"ONI"</span> <span class="ow">in</span> <span class="n">df</span> <span class="k">else</span> <span class="p">[])</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">VARS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Observaciones (punto-día): </span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">  (mínimo exigido: 20.000)"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Variables: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">   relación n/p: </span><span class="si">{</span><span class="n">n</span><span class="o">/</span><span class="n">p</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Sitios: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ADVERTENCIA: menos de 20.000 observaciones (mínimo sugerido por la guía). Se declara como limitación."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Días distintos: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rango del objetivo diario: </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">OBJ</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> – </span><span class="si">{</span><span class="n">df</span><span class="p">[</span><span class="n">OBJ</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mm/día"</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src</span><span class="w"> </span><span class="kn">import</span> <span class="n">modelado</span> <span class="k">as</span> <span class="n">md</span>
+<span class="n">semanal</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">semanal_por_punto</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="n">OBJ</span><span class="p">])[</span><span class="n">OBJ</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">punto</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Advertencia: los sitios vecinos comparten eventos climáticos; en 45 años hay del orden de 15 episodios de El Niño o La Niña."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rango del objetivo semanal: </span><span class="si">{</span><span class="n">semanal</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> – </span><span class="si">{</span><span class="n">semanal</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mm/semana"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Observaciones (punto-día): 16,436  (mínimo exigido: 20.000)
+Variables: 11   relación n/p: 1,494
+Sitios: 1
+ADVERTENCIA: menos de 20.000 observaciones (mínimo sugerido por la guía). Se declara como limitación.
+Días distintos: 16,436
+Rango del objetivo diario: 0.0 – 229.6 mm/día
+Rango del objetivo semanal: 0.0 – 370.3 mm/semana
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tamaño efectivo.</strong> Los días consecutivos están autocorrelacionados y los puntos vecinos comparten clima, así que el número de observaciones independientes es bastante menor que el número de filas. Por eso la validación es cronológica y los intervalos de confianza se calculan con bootstrap por bloques.</p>
+</section>
+<section id="diccionario-de-variables">
+<h2>1.3 Diccionario de variables<a class="headerlink" href="#diccionario-de-variables" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">diccionario</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">"fecha"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="s2">"Día de la observación (hora estándar local, escala diaria)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"categórica"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="s2">"Identificador del sitio (REGIONAL_### o FINCA_SABANAGRANDE)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"tipo_punto"</span><span class="p">,</span> <span class="s2">"categórica"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="s2">"regional (entrenamiento) o finca_prueba"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"lat, lon"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"grados (EPSG:4326)"</span><span class="p">,</span> <span class="s2">"Coordenadas devueltas por POWER"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"elevacion_m"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"m"</span><span class="p">,</span> <span class="s2">"Elevación del punto según POWER"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"PRECTOTCORR"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"mm/día"</span><span class="p">,</span> <span class="s2">"Precipitación total corregida (OBJETIVO)"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"T2M, T2M_MAX, T2M_MIN"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"°C"</span><span class="p">,</span> <span class="s2">"Temperatura media, máxima y mínima a 2 m"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"RH2M"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"%"</span><span class="p">,</span> <span class="s2">"Humedad relativa a 2 m"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"WS2M"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"m/s"</span><span class="p">,</span> <span class="s2">"Velocidad del viento a 2 m"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"ALLSKY_SFC_SW_DWN"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"MJ/m²/día"</span><span class="p">,</span> <span class="s2">"Radiación solar de onda corta en superficie"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"PS"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"kPa"</span><span class="p">,</span> <span class="s2">"Presión en superficie"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"GWETROOT"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"0-1"</span><span class="p">,</span> <span class="s2">"Humedad del suelo en la zona de raíces"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"GWETTOP"</span><span class="p">,</span> <span class="s2">"numérica"</span><span class="p">,</span> <span class="s2">"0-1"</span><span class="p">,</span> <span class="s2">"Humedad del suelo en la capa superficial"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"ET0"</span><span class="p">,</span> <span class="s2">"numérica (derivada)"</span><span class="p">,</span> <span class="s2">"mm/día"</span><span class="p">,</span> <span class="s2">"Evapotranspiración de referencia FAO-56"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"ONI"</span><span class="p">,</span> <span class="s2">"numérica (externa)"</span><span class="p">,</span> <span class="s2">"°C"</span><span class="p">,</span> <span class="s2">"Anomalía del Niño 3.4, rezagada 75 días (fecha de publicación)"</span><span class="p">),</span>
+<span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"tipo"</span><span class="p">,</span> <span class="s2">"unidad"</span><span class="p">,</span> <span class="s2">"significado"</span><span class="p">])</span>
+<span class="n">diccionario</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>variable</th>
+      <th>tipo</th>
+      <th>unidad</th>
+      <th>significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>fecha</td>
+      <td>fecha</td>
+      <td>-</td>
+      <td>Día de la observación (hora estándar local, escala diaria)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>punto</td>
+      <td>categórica</td>
+      <td>-</td>
+      <td>Identificador del sitio (REGIONAL_### o FINCA_SABANAGRANDE)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>tipo_punto</td>
+      <td>categórica</td>
+      <td>-</td>
+      <td>regional (entrenamiento) o finca_prueba</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>lat, lon</td>
+      <td>numérica</td>
+      <td>grados (EPSG:4326)</td>
+      <td>Coordenadas devueltas por POWER</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>elevacion_m</td>
+      <td>numérica</td>
+      <td>m</td>
+      <td>Elevación del punto según POWER</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>PRECTOTCORR</td>
+      <td>numérica</td>
+      <td>mm/día</td>
+      <td>Precipitación total corregida (OBJETIVO)</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>T2M, T2M_MAX, T2M_MIN</td>
+      <td>numérica</td>
+      <td>°C</td>
+      <td>Temperatura media, máxima y mínima a 2 m</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>RH2M</td>
+      <td>numérica</td>
+      <td>%</td>
+      <td>Humedad relativa a 2 m</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>WS2M</td>
+      <td>numérica</td>
+      <td>m/s</td>
+      <td>Velocidad del viento a 2 m</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>numérica</td>
+      <td>MJ/m²/día</td>
+      <td>Radiación solar de onda corta en superficie</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>PS</td>
+      <td>numérica</td>
+      <td>kPa</td>
+      <td>Presión en superficie</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>GWETROOT</td>
+      <td>numérica</td>
+      <td>0-1</td>
+      <td>Humedad del suelo en la zona de raíces</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>GWETTOP</td>
+      <td>numérica</td>
+      <td>0-1</td>
+      <td>Humedad del suelo en la capa superficial</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>ET0</td>
+      <td>numérica (derivada)</td>
+      <td>mm/día</td>
+      <td>Evapotranspiración de referencia FAO-56</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>ONI</td>
+      <td>numérica (externa)</td>
+      <td>°C</td>
+      <td>Anomalía del Niño 3.4, rezagada 75 días (fecha de publicación)</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Estructura.</strong> Panel espacio-temporal: la unidad de observación es sitio × día, con nivel de agregación diario (datos de reanálisis y satélite en grilla, no estaciones). Ruta D de la guía.</p>
+</section>
+<section id="valores-faltantes-solo-entrenamiento">
+<h2>1.4 Valores faltantes (solo entrenamiento)<a class="headerlink" href="#valores-faltantes-solo-entrenamiento" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">falt</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">VARS</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">falt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">falt</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s2">"fecha"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Greys"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">VARS</span><span class="p">)));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">VARS</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="mi">5</span><span class="p">));</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Proporción de faltantes por año y variable"</span><span class="p">);</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ALLSKY_SFC_SW_DWN    7.49
+ET0                  7.49
+PRECTOTCORR          0.00
+T2M_MAX              0.00
+T2M                  0.00
+RH2M                 0.00
+T2M_MIN              0.00
+WS2M                 0.00
+PS                   0.00
+GWETROOT             0.00
+GWETTOP              0.00
+</pre></div>
+</div>
+<img alt="../_images/72844fdcf19137d37c8fe2ff5a8a4d3696a1e04d6b6fd7fb4cc3db524c3d03d1.png" src="../_images/72844fdcf19137d37c8fe2ff5a8a4d3696a1e04d6b6fd7fb4cc3db524c3d03d1.png" />
+</div>
+</div>
+<p><strong>Mecanismo.</strong> La prueba de Little no está disponible en las librerías del proyecto, así que el mecanismo se evalúa comparando las distribuciones de las demás variables entre filas con y sin faltante. Si los faltantes se concentran en ciertos años (por ejemplo, la radiación al inicio del registro), el mecanismo es MAR respecto a la fecha y no MCAR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VARS</span><span class="p">:</span>
+    <span class="n">faltante</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">faltante</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">VARS</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faltante</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">faltante</span><span class="p">,</span> <span class="n">w</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="n">ks</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+            <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">ks</span><span class="o">.</span><span class="n">statistic</span><span class="p">,</span> <span class="n">ks</span><span class="o">.</span><span class="n">pvalue</span><span class="p">))</span>
+    <span class="n">anios</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">faltante</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">faltante</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> faltantes, años </span><span class="si">{</span><span class="n">anios</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">–</span><span class="si">{</span><span class="n">anios</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"con faltante"</span><span class="p">,</span> <span class="s2">"comparada"</span><span class="p">,</span> <span class="s2">"KS D"</span><span class="p">,</span> <span class="s2">"p"</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"KS D"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ALLSKY_SFC_SW_DWN: 1095 faltantes, años 1981–1983
+ET0: 1095 faltantes, años 1981–1983
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>con faltante</th>
+      <th>comparada</th>
+      <th>KS D</th>
+      <th>p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16</th>
+      <td>ET0</td>
+      <td>GWETROOT</td>
+      <td>0.1769</td>
+      <td>3.409e-28</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>GWETROOT</td>
+      <td>0.1769</td>
+      <td>3.409e-28</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>ET0</td>
+      <td>GWETTOP</td>
+      <td>0.1724</td>
+      <td>8.312e-27</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>GWETTOP</td>
+      <td>0.1724</td>
+      <td>8.312e-27</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>PS</td>
+      <td>0.1105</td>
+      <td>3.179e-11</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>ET0</td>
+      <td>PS</td>
+      <td>0.1105</td>
+      <td>3.179e-11</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>ET0</td>
+      <td>RH2M</td>
+      <td>0.07943</td>
+      <td>5.252e-06</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>RH2M</td>
+      <td>0.07943</td>
+      <td>5.252e-06</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ET0</td>
+      <td>PRECTOTCORR</td>
+      <td>0.0634</td>
+      <td>0.0005543</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>PRECTOTCORR</td>
+      <td>0.0634</td>
+      <td>0.0005543</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>WS2M</td>
+      <td>0.05491</td>
+      <td>0.004273</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>ET0</td>
+      <td>WS2M</td>
+      <td>0.05491</td>
+      <td>0.004273</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>ET0</td>
+      <td>T2M_MIN</td>
+      <td>0.05282</td>
+      <td>0.006762</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>T2M_MIN</td>
+      <td>0.05282</td>
+      <td>0.006762</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>T2M</td>
+      <td>0.0426</td>
+      <td>0.04914</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Interpretación.</strong> Solo la radiación solar, y por tanto la ET0, tiene faltantes: el 6,7 % de los días, concentrados completamente en 1981–1983. El faltante depende del periodo y no es aleatorio (no es MCAR): las demás variables difieren significativamente entre los años con y sin radiación, porque 1982–1983 fueron años secos de El Niño. Es un mecanismo MAR respecto a la fecha. Como la radiación entra al modelo solo como medias móviles, se imputa dentro del Pipeline con la mediana de entrenamiento y se reconoce que el modelo es menos confiable para esos años. No hay fechas faltantes, duplicados ni temperaturas incoherentes. El tamaño (16.436 días) está por debajo de las 20.000 observaciones sugeridas; el diseño regional del notebook 00 resuelve esta limitación.</p>
+</section>
+<section id="duplicados-y-casi-duplicados">
+<h2>1.5 Duplicados y casi-duplicados<a class="headerlink" href="#duplicados-y-casi-duplicados" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Filas duplicadas exactas:"</span><span class="p">,</span> <span class="n">train_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Claves (punto, fecha) repetidas:"</span><span class="p">,</span> <span class="n">train_df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="n">completo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">train_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">train_df</span><span class="o">.</span><span class="n">fecha</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">freq</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p_</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">train_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"punto"</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">p_</span><span class="si">}</span><span class="s2">: días faltantes en el calendario = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">completo</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">fecha</span><span class="p">))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="c1"># Casi-duplicados: días consecutivos con todas las variables idénticas (relleno por error)</span>
+<span class="n">iguales</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"punto"</span><span class="p">,</span> <span class="s2">"fecha"</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"punto"</span><span class="p">)[</span><span class="n">VARS</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Días idénticos al anterior en todas las variables:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">iguales</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas duplicadas exactas: 0
+Claves (punto, fecha) repetidas: 0
+FINCA_SABANAGRANDE: días faltantes en el calendario = 0
+Días idénticos al anterior en todas las variables: 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="valores-imposibles-o-inconsistentes">
+<h2>1.6 Valores imposibles o inconsistentes<a class="headerlink" href="#valores-imposibles-o-inconsistentes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">reglas</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"PRECTOTCORR"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="s2">"T2M"</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span> <span class="s2">"T2M_MAX"</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="s2">"T2M_MIN"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
+    <span class="s2">"RH2M"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="s2">"WS2M"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="s2">"ALLSKY_SFC_SW_DWN"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">),</span>
+    <span class="s2">"PS"</span><span class="p">:</span> <span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span> <span class="s2">"GWETROOT"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"GWETTOP"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">"ET0"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">tabla</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span> <span class="ow">in</span> <span class="n">reglas</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">train_df</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">train_df</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="n">tabla</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">lo</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span> <span class="nb">int</span><span class="p">((</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">hi</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tabla</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">,</span> <span class="s2">"mín plausible"</span><span class="p">,</span> <span class="s2">"máx plausible"</span><span class="p">,</span> <span class="s2">"&lt; mín"</span><span class="p">,</span> <span class="s2">"&gt; máx"</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"T2M_MIN &gt; T2M_MAX:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">train_df</span><span class="o">.</span><span class="n">T2M_MIN</span> <span class="o">&gt;</span> <span class="n">train_df</span><span class="o">.</span><span class="n">T2M_MAX</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Coordenadas fuera de rango:"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">train_df</span><span class="o">.</span><span class="n">lat</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="o">|</span> <span class="o">~</span><span class="n">train_df</span><span class="o">.</span><span class="n">lon</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>variable</th>
+      <th>mín plausible</th>
+      <th>máx plausible</th>
+      <th>&lt; mín</th>
+      <th>&gt; máx</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>PRECTOTCORR</td>
+      <td>0</td>
+      <td>500</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>T2M</td>
+      <td>5</td>
+      <td>45</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>T2M_MAX</td>
+      <td>5</td>
+      <td>50</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>T2M_MIN</td>
+      <td>0</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>RH2M</td>
+      <td>0</td>
+      <td>100</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>WS2M</td>
+      <td>0</td>
+      <td>40</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ALLSKY_SFC_SW_DWN</td>
+      <td>0</td>
+      <td>35</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>PS</td>
+      <td>80</td>
+      <td>110</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>GWETROOT</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>GWETTOP</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>ET0</td>
+      <td>0</td>
+      <td>15</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>T2M_MIN &gt; T2M_MAX: 0
+Coordenadas fuera de rango: 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sesgos-de-muestreo-y-representatividad">
+<h2>1.7 Sesgos de muestreo y representatividad<a class="headerlink" href="#sesgos-de-muestreo-y-representatividad" title="Link to this heading">#</a></h2>
+<p>POWER entrega valores promedio de una celda de grilla (del orden de 50 km), no mediciones en la finca. Eso implica que:</p>
+<ul class="simple">
+<li><p>la lluvia convectiva local (aguaceros muy concentrados) se suaviza, por lo que los extremos diarios reales pueden ser mayores que los del dataset;</p></li>
+<li><p>la precipitación está corregida con datos satelitales y de estaciones, y su calidad es menor en zonas con pocas estaciones;</p></li>
+<li><p>la grilla cubre el Caribe continental bajo (≤ 400 m); las zonas de montaña se excluyeron a propósito.</p></li>
+</ul>
+<p><strong>Recomendación:</strong> contrastar la serie con estaciones del IDEAM cercanas (o con registros de la finca, si existen) para cuantificar el sesgo, en particular el aumento de lluvia de 2022–2025.</p>
+</section>
+<section id="consideraciones-eticas">
+<h2>1.8 Consideraciones éticas<a class="headerlink" href="#consideraciones-eticas" title="Link to this heading">#</a></h2>
+<p>El dataset no contiene datos personales. La ubicación de la finca se representa con coordenadas aproximadas del municipio, que no permiten identificarla. Las fuentes son de acceso abierto (NASA POWER y NOAA-CPC, uso libre con citación).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00b_dataset_un_sitio.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Dataset de un sitio (plan B)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_eda.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">2. Análisis exploratorio de datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserva-del-conjunto-de-prueba">1.1 Reserva del conjunto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-muestra">1.2 Tamaño de la muestra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables">1.3 Diccionario de variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes-solo-entrenamiento">1.4 Valores faltantes (solo entrenamiento)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-y-casi-duplicados">1.5 Duplicados y casi-duplicados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-imposibles-o-inconsistentes">1.6 Valores imposibles o inconsistentes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-de-muestreo-y-representatividad">1.7 Sesgos de muestreo y representatividad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-eticas">1.8 Consideraciones éticas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Edwin Yunis y Jairo Serrano — Maestría en Ingeniería Industrial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
