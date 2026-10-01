@@ -227,3 +227,8 @@ body {
   .cell_input { display: none !important; }
   .bd-article { box-shadow: none; border: 0; }
 }
+
+/* Correcciones 2026-09-30: HTML generado desde notebooks corregidos. */
+.code_cell .input, .code_cell .input_area, .jp-Cell-inputWrapper { display: none !important; }
+.jp-Cell, .cell { margin: 1.15rem 0 !important; padding: 0 !important; border: 0 !important; }
+.output_area, .output_subarea { max-width: 100% !important; }

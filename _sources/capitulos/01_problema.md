@@ -14,11 +14,11 @@ La decisión se toma antes de sembrar y abarca el ciclo completo del cultivo: cu
 
 **General.** Desarrollar un sistema de pronóstico de lluvia y apoyo a la decisión que estime, para cultivos, hectáreas y fecha de siembra definidos por el agricultor, la reserva de agua necesaria y el área máxima sembrable con un nivel de seguridad dado.
 
-**Específicos.**
+**Específicos del proyecto** (el alcance de cada entregable se indica entre paréntesis).
 
-1. Construir un dataset espacio-temporal diario de variables agroclimáticas del Caribe colombiano (NASA POWER, 1981–2025) con el índice ONI.
-2. Caracterizar mediante un EDA la estacionalidad, la dependencia temporal y espacial, la influencia de ENSO y la deriva del clima regional.
-3. Implementar líneas base y un modelo base para el pronóstico semanal de lluvia, validado en un sitio no visto y en años futuros.
+1. Construir un dataset diario de variables agroclimáticas de NASA POWER (1981–2025) para la finca (entregable 1) y para una grilla regional del Caribe colombiano con el índice ONI (entregable 2).
+2. Caracterizar mediante un EDA la estacionalidad, la dependencia temporal y la deriva del clima en la finca (entregable 1), y la dependencia espacial y la influencia de ENSO con la grilla regional (entregable 2).
+3. Implementar líneas base y un modelo base para el pronóstico semanal de lluvia, validado de forma cronológica (entregable 1) y luego en un sitio no visto (entregable 2).
 4. Determinar el horizonte *n* hasta el cual el pronóstico supera a la climatología con 95 % de confianza.
 5. Implementar un planificador que combine el pronóstico con el balance hídrico FAO-56 y un modelo del reservorio, con los coeficientes de agua de cada cultivo como entrada del agricultor.
 
@@ -32,7 +32,7 @@ La decisión se toma antes de sembrar y abarca el ciclo completo del cultivo: cu
 
 ## Variable objetivo del nivel 1
 
-Para cada sitio *s* y fecha de emisión *t* (un pronóstico por semana, los lunes), el objetivo es la lluvia acumulada en la semana *h* posterior:
+Para cada sitio *s* (en este entregable, solo la finca) y fecha de emisión *t* (un pronóstico por semana, los lunes), el objetivo es la lluvia acumulada en la semana *h* posterior:
 
 $$y_h(s,t) = \sum_{d=7(h-1)+1}^{7h} P_{s,\,t+d}\qquad [\text{mm}]$$
 
@@ -40,7 +40,13 @@ Como 1 mm sobre 1 ha equivale a 10 m³, el mismo valor por hectárea es $10\,y_h
 
 ## Horizonte confiable *n*
 
-$$SS_h = 1-\frac{RMSE_{\text{modelo},h}}{RMSE_{\text{climatología},h}},\qquad n = \max\{h:\ \text{IC}_{95}(SS_h)_{\text{inf}} > 0\}$$
+$$SS_h = 1-\frac{RMSE_{\text{modelo},h}}{RMSE_{\text{climatología},h}}$$
+
+Se usan dos criterios y se adopta el más conservador:
+
+- **Prueba:** $n_{\text{prueba}} = \max\{h:\ \text{IC}_{95}(SS_h)_{\text{inf}} > 0\}$, con intervalos por bootstrap de bloques en 2021–2025.
+- **Validación:** $n_{\text{val}}$ = mayor horizonte en el que el SVR supera a la climatología en al menos 4 de los 5 bloques de la validación cruzada temporal (1981–2020).
+- $n = \min(n_{\text{prueba}},\ n_{\text{val}})$.
 
 Para las semanas posteriores a *n* se usan los cuantiles climatológicos; para la planificación de la temporada, el nivel 2.
 
